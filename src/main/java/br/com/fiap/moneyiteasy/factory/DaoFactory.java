@@ -1,6 +1,8 @@
 package br.com.fiap.moneyiteasy.factory;
 
+import br.com.fiap.moneyiteasy.dao.LoginDao;
 import br.com.fiap.moneyiteasy.dao.UsuarioDao;
+import br.com.fiap.moneyiteasy.dao.impl.OracleLoginDao;
 import br.com.fiap.moneyiteasy.dao.impl.OracleUsuarioDao;
 
 public class DaoFactory {
@@ -9,4 +11,7 @@ public class DaoFactory {
         return new OracleUsuarioDao();
     }
 
+    public static LoginDao getLoginDao() {
+        return new OracleLoginDao();
+    }
 }

@@ -6,14 +6,16 @@ public abstract class Transacao {
     private int idTransacao;
     private double valor;
     private LocalDate date;
+    private Categoria categoria;
 
     public Transacao() {
     }
 
-    public Transacao(int idTransacao, double valor, LocalDate date) {
+    public Transacao(int idTransacao, double valor, LocalDate date, Categoria categoria) {
         this.idTransacao = idTransacao;
         this.valor = valor;
         this.date = date;
+        this.categoria = categoria;
     }
 
     public int getIdTransacao() {
@@ -38,6 +40,14 @@ public abstract class Transacao {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public abstract String getTipoTransacao();

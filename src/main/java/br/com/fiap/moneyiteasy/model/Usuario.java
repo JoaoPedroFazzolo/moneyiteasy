@@ -7,15 +7,17 @@ public class Usuario {
     private String nome;
     private String cpf;
     LocalDate dateCriacaoUser;
+    private Login login;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nome, String cpf, LocalDate dateCriacaoUser) {
+    public Usuario(int idUsuario, String nome, String cpf, LocalDate dateCriacaoUser, Login login) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.cpf = cpf;
         this.dateCriacaoUser = dateCriacaoUser;
+        this.login = login;
     }
 
     public int getId() {
