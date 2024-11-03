@@ -1,6 +1,5 @@
 package br.com.fiap.moneyiteasy.model;
 
-import br.com.fiap.moneyiteasy.model.base.Categoria;
 import br.com.fiap.moneyiteasy.model.base.Transacao;
 
 import java.time.LocalDate;

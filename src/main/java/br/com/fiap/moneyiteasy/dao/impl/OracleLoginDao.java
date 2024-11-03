@@ -1,6 +1,6 @@
 package br.com.fiap.moneyiteasy.dao.impl;
 import br.com.fiap.moneyiteasy.dao.ConnectionManager;
-import br.com.fiap.moneyiteasy.dao.LoginDao;
+import br.com.fiap.moneyiteasy.dao.interfaces.LoginDao;
 import br.com.fiap.moneyiteasy.model.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,0 +1,25 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+main,
+span {
+    color: #5F6673;
+}
+
+.img-login {
+    width: 80%;
+    height: auto;
+}
+
+.form-container {
+    max-width: 30rem;
+    padding: 1rem;
+}
+
+.social-icons {
+    font-size: 1.5rem;
+    color: #5F6673;
+}

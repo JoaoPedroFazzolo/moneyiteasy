@@ -20,14 +20,6 @@ public class Usuario {
         this.login = login;
     }
 
-    public int getId() {
-        return idUsuario;
-    }
-
-    public void setId(int id) {
-        this.idUsuario = id;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -50,5 +42,21 @@ public class Usuario {
 
     public void setDateCriacaoUser(LocalDate dateCriacaoUser) {
         this.dateCriacaoUser = dateCriacaoUser;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 }

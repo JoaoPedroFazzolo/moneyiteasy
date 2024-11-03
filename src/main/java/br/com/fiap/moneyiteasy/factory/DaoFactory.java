@@ -1,17 +1,21 @@
 package br.com.fiap.moneyiteasy.factory;
 
-import br.com.fiap.moneyiteasy.dao.LoginDao;
-import br.com.fiap.moneyiteasy.dao.UsuarioDao;
-import br.com.fiap.moneyiteasy.dao.impl.OracleLoginDao;
-import br.com.fiap.moneyiteasy.dao.impl.OracleUsuarioDao;
+import br.com.fiap.moneyiteasy.dao.impl.*;
+import br.com.fiap.moneyiteasy.dao.interfaces.*;
 
 public class DaoFactory {
 
-    public static UsuarioDao getUsuarioDao() {
-        return new OracleUsuarioDao();
-    }
+    public static UsuarioDao getUsuarioDao() {return new OracleUsuarioDao();}
 
     public static LoginDao getLoginDao() {
         return new OracleLoginDao();
     }
+
+    public static CategoriaDao getCategoriaDao() {return new OracleCategoriaDao();}
+
+    public static ReceitaDao getReceitaDao() {return new OracleReceitaDao();}
+
+    public static DespesaDao getDespesaDao() {return new OracleDespesaDao();}
+
+    public static InvestimentoDao getInvestimentoDao() {return new OracleInvestimentoDao();}
 }
