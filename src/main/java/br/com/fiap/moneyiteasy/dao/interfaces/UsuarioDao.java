@@ -9,6 +9,4 @@ public interface UsuarioDao {
     void cadastrar(Usuario usuario) throws DBException;
     void atualizar(Usuario usuario) throws DBException;
     void remover(int codigo) throws DBException;
-    Usuario buscar(int codigo) throws DBException;
-    List<Usuario> listar() throws DBException;
 }

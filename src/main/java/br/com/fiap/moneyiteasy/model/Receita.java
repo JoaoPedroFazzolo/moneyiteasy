@@ -8,8 +8,8 @@ public class Receita extends Transacao {
     public Receita() {
     }
 
-    public Receita(int idTrasnsacao, double valor, LocalDate date, Categoria categoria) {
-        super(idTrasnsacao, valor, date, categoria);
+    public Receita(int idTransacao, double valor, LocalDate date, Categoria categoria) {
+        super(idTransacao, valor, date, categoria);
     }
 
 

@@ -9,9 +9,8 @@
     <title>Money It Easy</title>
     <link rel="shortcut icon" href="./resources/images/logo_money_icon.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <link rel="stylesheet" href="./resources/css/style.css" />
+    <link rel="stylesheet" href="./resources/css/bootstrap.css" />
 </head>
 
 <body>
@@ -19,7 +18,7 @@
 <nav class="navbar navbar-expand-md bg-black navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="./login.jsp">
-            <!-- <img src="./assets/images/logo_home_light.svg" alt="Logo do Money It Easy" /> -->
+            <img src="./resources/images/logo_home_light.svg" alt="Logo do Money It Easy" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
