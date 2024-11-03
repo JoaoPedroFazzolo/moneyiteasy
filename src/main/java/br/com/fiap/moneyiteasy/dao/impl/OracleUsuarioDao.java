@@ -1,6 +1,6 @@
 package br.com.fiap.moneyiteasy.dao.impl;
 
-import br.com.fiap.moneyiteasy.dao.UsuarioDao;
+import br.com.fiap.moneyiteasy.dao.interfaces.UsuarioDao;
 import br.com.fiap.moneyiteasy.exception.DBException;
 import br.com.fiap.moneyiteasy.model.Usuario;
 
@@ -13,6 +13,7 @@ public class OracleUsuarioDao implements UsuarioDao {
 
     @Override
     public void cadastrar(Usuario usuario) throws DBException {
+
 
     }
 

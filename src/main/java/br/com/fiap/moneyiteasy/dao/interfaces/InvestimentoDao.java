@@ -1,7 +1,6 @@
-package br.com.fiap.moneyiteasy.dao;
+package br.com.fiap.moneyiteasy.dao.interfaces;
 
 import br.com.fiap.moneyiteasy.exception.DBException;
-import br.com.fiap.moneyiteasy.model.Despesa;
 import br.com.fiap.moneyiteasy.model.Investimento;
 
 import java.util.List;

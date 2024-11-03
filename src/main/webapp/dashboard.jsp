@@ -1,34 +1,39 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money It Easy</title>
+    <title>Visão Geral | Money It Easy</title>
+
     <link rel="shortcut icon" href="./resources/images/logo_money_icon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
-    <link rel="stylesheet" href="./resources/css/style.css" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./resources/css/header.css" />
+    <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="stylesheet" href="./resources/css/login.css">
 </head>
 
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-md bg-black navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="./login.jsp">
-            <!-- <img src="./assets/images/logo_home_light.svg" alt="Logo do Money It Easy" /> -->
+<header class="bg-success">
+    <nav class="navbar navbar-expand-md navbar-dark m-3 p-2 header-container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+            <img src="./resources/images/logo_home_light.svg" alt="Logo" style="height: 30px;">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="text-white ms-3">Boa tarde, <strong>Junior</strong></span>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto">
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                    <a class="nav-link active" href="#">Visão Geral</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Receitas</a>
@@ -37,14 +42,18 @@
                     <a class="nav-link" href="#">Despesas</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2 rounded-0" type="search" placeholder="Digite a categoria"
-                       aria-label="Pesquisar" />
-                <button class="btn btn-outline-light rounded-0" type="submit">Buscar</button>
-            </form>
+            <div class="d-flex align-items-center">
+                <a href="#" class="text-white me-3">
+                    <i class="bi bi-bell" style="font-size: 1.5rem"></i>
+                </a>
+                <a href="#" class="text-white">
+                    <i class="bi bi-person-circle" style="font-size: 1.5rem"></i>
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
+
 
 <!-- Saldo Geral -->
 <div class="container-fluid px-4">
@@ -184,12 +193,31 @@
         </div>
     </div>
 </div>
-
 </div>
 
-<footer class="text-center bg-black text-bg-dark mt-4">
-    <p class="card-text py-3">
-        2024 <i class="bi bi-c-circle"></i> Desenvolvido por Junior F. | Projeto: Fintech - FIAP </p>
+<footer class="border-top bg-body-tertiary">
+    <div class="d-flex flex-wrap justify-content-between align-items-center py-3 ms-4 me-4">
+        <div class="col-md-4 d-flex align-items-center">
+            <a class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" href="/login.html">
+                <img src="./resources/images/logo_money_icon.svg" alt="Logo money it easy">
+            </a>
+            <span>© 2024, FIAP | 1TDSOE - Grupo 08</span>
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3">
+                <a class="social-icons bi bi-linkedin" href="https://https://www.linkedin.com/in/joao-fazzolo">
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="social-icons bi bi-instagram" href="https://www.linkedin.com/in/osmarjosefacinjr">
+                </a>
+            </li>
+            <li class="ms-3">
+                <a class="social-icons bi bi-github" href="https://https://github.com/JoaoPedroFazzolo/moneyiteasy">
+                </a>
+            </li>
+        </ul>
+    </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

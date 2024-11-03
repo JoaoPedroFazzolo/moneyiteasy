@@ -1,6 +1,6 @@
 package br.com.fiap.moneyiteasy.dao.impl;
 
-import br.com.fiap.moneyiteasy.dao.DespesaDao;
+import br.com.fiap.moneyiteasy.dao.interfaces.DespesaDao;
 import br.com.fiap.moneyiteasy.exception.DBException;
 import br.com.fiap.moneyiteasy.model.Despesa;
 
