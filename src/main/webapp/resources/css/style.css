@@ -1,74 +1,60 @@
-:root {
-    --main-bg-color: #009d63;
-    --main-text-color: #009d63;
-    --second-text-color: #bbbec5;
-    --second-bg-color: #c1efde;
+/* Login */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #F6F7F8;
+    color: #5F6673;
 }
 
-.primary-text {
-    color: var(--main-text-color);
+/* Login */
+.img-login {
+    width: 80%;
+    height: auto;
 }
 
-.second-text {
-    color: var(--second-text-color);
+.form-container {
+    max-width: 30rem;
+    padding: 1rem;
 }
 
-.primary-bg {
-    background-color: var(--main-bg-color);
+.social-icons {
+    font-size: 1rem;
+    color: #5F6673;
 }
 
-.secondary-bg {
-    background-color: var(--second-bg-color);
+.font-footer {
+    font-size: 10px;
 }
 
-.texto-menor {
-    font-size: 13px;
+/* Dashboard Financeiro */
+.body-dashboard {
+    color: #1F2937;
 }
 
-.custom-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
+.bg-header {
+    background-color: #24C456;
 }
 
-.custom-card img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
+.input-green {
+    border: 2px solid #D5DADF;
 }
 
-.custom-card-title {
-    font-size: 18px;
-    font-weight: bold;
+.input-green:hover {
+    box-shadow: 0 0 10px rgba(116, 255, 149, 0.631);
+    border: 2px solid #24C456;
 }
 
-.custom-card-subtitle {
-    font-size: 14px;
-    color: #666;
+
+.btn-modal-salvar {
+    color: #FFFFFF;
+    background-color: #24C456;
+    transition: background-color 0.3s ease;
 }
 
-.account-balance {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-}
-
-.new-account {
-    background-color: #e6f4ea;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.new-account:hover {
-    background-color: #d4e8d5;
-}
-
-.new-account span {
-    font-size: 18px;
-    font-weight: bold;
-    color: #009d63;
+.btn-modal-salvar:hover {
+    color: #FFFFFF;
+    background-color: #1A9A45;
 }
 
 .transaction-filter .nav-link {
@@ -126,113 +112,4 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
-
-/* Layout Responsivo */
-@media (max-width: 1200px) {
-    .custom-card-title {
-        font-size: 16px;
-    }
-
-    .custom-card-subtitle {
-        font-size: 12px;
-    }
-
-    .account-balance {
-        font-size: 16px;
-    }
-
-    .transaction-filter .nav-link {
-        font-size: 14px;
-    }
-
-    .transaction-title {
-        font-size: 14px;
-    }
-
-    .transaction-amount {
-        font-size: 14px;
-    }
-
-    .transaction-type {
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 992px) {
-    .div-novidades {
-        width: 100%;
-    }
-
-    .custom-card {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 768px) {
-    .div-novidades {
-        width: 100%;
-    }
-
-    .custom-card {
-        padding: 10px;
-    }
-
-    .transaction-filter .nav-link {
-        font-size: 12px;
-    }
-
-    .transaction-title {
-        font-size: 12px;
-    }
-
-    .transaction-amount {
-        font-size: 12px;
-    }
-
-    .transaction-type {
-        font-size: 8px;
-    }
-}
-
-@media (max-width: 576px) {
-    .div-novidades {
-        width: 100%;
-    }
-
-    .custom-card {
-        padding: 10px;
-    }
-
-    .custom-card-title {
-        font-size: 14px;
-    }
-
-    .custom-card-subtitle {
-        font-size: 10px;
-    }
-
-    .account-balance {
-        font-size: 14px;
-    }
-
-    .transaction-filter .nav-link {
-        font-size: 10px;
-    }
-
-    .transaction-title {
-        font-size: 10px;
-    }
-
-    .transaction-date {
-        font-size: 10px;
-    }
-
-    .transaction-amount {
-        font-size: 10px;
-    }
-
-    .transaction-type {
-        font-size: 6px;
-    }
 }
