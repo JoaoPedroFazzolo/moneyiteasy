@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="despesa.jsp">Despesas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="investimento.jsp">Investimentos</a>
+                </li>
             </ul>
             <div class="d-flex align-items-center">
                 <a href="#" class="text-white me-3">

@@ -22,7 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 <div class="d-flex align-items-center justify-content-center flex-grow-1 py-4 bg-body-tertiary">
     <main class="w-100 m-auto form-container">
-        <form>
+        <form action="login" method="post">
             <img src="resources/images/logo_home_dark.svg" class="img-login mb-4" alt="Logo money-it-easy">
             <h1 class="h4 mb-3 fw-normal text-login">Por favor, faça o login</h1>
         </form>

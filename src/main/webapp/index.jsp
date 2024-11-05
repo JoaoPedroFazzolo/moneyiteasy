@@ -9,13 +9,12 @@
     <title>Visão Geral</title>
 
     <link rel="shortcut icon" href="resources/images/logo_money_icon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="resources/css/style.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="resources/css/style.css">
 </head>
 
 <body class="container body-dashboard">
@@ -90,7 +89,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="receita" method="post">
                             <div class="mb-3">
                                 <label for="incomeValue" class="form-label">Valor</label>
                                 <input type="number" class="form-control input-green" id="incomeValue" required>
@@ -106,7 +105,7 @@
                         </form>
                     </div>
                     <div class=" col-md-12 modal-footer">
-                        <button type="button" class="btn btn-modal-salvar fw-bold w-100">Adicionar
+                        <button type="submit" value="Salvar" class="btn btn-modal-salvar fw-bold w-100" data-bs-dismiss="modal">Adicionar
                             Receita</button>
                     </div>
                 </div>
@@ -123,7 +122,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="despesa" method="post">
                             <div class="mb-3">
                                 <label for="expenseValue" class="form-label">Valor</label>
                                 <input type="number" class="form-control input-green" id="expenseValue" required>
@@ -139,7 +138,7 @@
                         </form>
                     </div>
                     <div class=" col-md-12 modal-footer">
-                        <button type="button" class="btn btn-modal-salvar fw-bold w-100">Adicionar
+                        <button type="button" class="btn btn-modal-salvar fw-bold w-100" data-bs-dimiss="modal">Adicionar
                             Despesa</button>
                     </div>
                 </div>
@@ -156,7 +155,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="investimento" method="post">
                             <div class="mb-3">
                                 <label for="InvestmentValue" class="form-label">Valor</label>
                                 <input type="number" class="form-control input-green" id="InvestmentValue" required>
@@ -172,7 +171,7 @@
                         </form>
                     </div>
                     <div class=" col-md-12 modal-footer">
-                        <button type="button" class="btn btn-modal-salvar fw-bold w-100">Adicionar
+                        <button type="button" class="btn btn-modal-salvar fw-bold w-100" data-bs-dimiss="modal">Adicionar
                             Investimento</button>
                     </div>
                 </div>

@@ -17,11 +17,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
-
 <body class="d-flex flex-column">
 <div class="d-flex align-items-center justify-content-center flex-grow-1 bg-body-tertiary">
     <main class="w-100 m-auto form-container">
-        <form>
+        <form action="cadastro" method="post">
             <img class="img-login mb-4" src="resources/images/logo_home_dark.svg" alt="">
             <h1 class="h4 mb-3 fw-normal text-login">É novo? Cadastre-se!</h1>
             <p class="h6 mb-3 fw-normal text-login">Todos os campos são obrigatórios</p>
