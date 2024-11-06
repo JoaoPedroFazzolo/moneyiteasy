@@ -29,7 +29,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Total de Despesas</p>
-                    <p class="fs-5 fw-bold text-center">R$ 9.100,00</p>
+                    <p class="fs-5 fw-bold text-center">${saldoTotal}</p>
                 </div>
                 <img src="resources/images/eye_on.svg" width="36" height="36" alt="Olho aberto">
             </div>
@@ -40,7 +40,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Despesas</p>
-                    <p class="fs-5 fw-bold text-center">R$ 8.400,00</p>
+                    <p class="fs-5 fw-bold text-center">${totalDespesa}</p>
                 </div>
                 <img src="resources/images/down_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>
@@ -51,7 +51,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Investimentos</p>
-                    <p class="fs-5 fw-bold text-center">R$ 600,00</p>
+                    <p class="fs-5 fw-bold text-center">${totalInvestimento}</p>
                 </div>
                 <img src="resources/images/active_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>
@@ -74,36 +74,13 @@
                                 </tr>
                                 </thead>
                                 <tbody id="transactionTable">
-                                <tr>
-                                    <td>R$ 500,00</td>
-                                    <td>17/11/2024</td>
-                                    <td>Mercado</td>
-                                </tr>
-                                <tr>
-                                    <td>R$ 4.000,00</td>
-                                    <td>16/11/2024</td>
-                                    <td>Aluguel</td>
-                                </tr>
-                                <tr>
-                                    <td>R$ 500,00</td>
-                                    <td>11/11/2024</td>
-                                    <td>Presente</td>
-                                </tr>
-                                <tr>
-                                    <td>R$ 500,00</td>
-                                    <td>08/11/2024</td>
-                                    <td>Roupas</td>
-                                </tr>
-                                <tr>
-                                    <td>R$ 3.000,00</td>
-                                    <td>30/10/2024</td>
-                                    <td>Carro</td>
-                                </tr>
-                                <tr>
-                                    <td>R$ 600,00</td>
-                                    <td>17/10/2024</td>
-                                    <td>Festa</td>
-                                </tr>
+                                <c:forEach items="${listaDespesas}" var="listaDespesa">
+                                    <tr>
+                                        <td>${listaDespesa.valor}</td>
+                                        <td>${listaDespesa.date}</td>
+                                        <td>${listaDespesa.categoria.nome}</td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

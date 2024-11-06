@@ -68,19 +68,20 @@ public class OracleCategoriaDao implements CategoriaDao {
 
 
     @Override
-    public List<Categoria> listar() {
+    public List<Categoria> listar(String tipo) {
         List<Categoria> lista = new ArrayList<Categoria>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conexao = ConnectionManager.getInstance().getConnection();
-            stmt = conexao.prepareStatement("SELECT * FROM TB_CATEGORIA_FINTECH");
+            stmt = conexao.prepareStatement("SELECT * FROM TB_CATEGORIA_FINTECH WHERE TIPO = ?");
+            stmt.setString(1, tipo.toUpperCase());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int codigo = rs.getInt("ID_CATEGORIA");
                 String nome = rs.getString("NOME_CATEGORIA");
-                String tipo = rs.getString("TIPO");
-                Categoria categoria = new Categoria(codigo, nome, tipo);
+                String tipoCategoria = rs.getString("TIPO");
+                Categoria categoria = new Categoria(codigo, nome, tipoCategoria);
                 lista.add(categoria);
             }
         } catch (SQLException e) {

@@ -59,25 +59,17 @@
                                 <tr>
                                     <th>Valor Investido</th>
                                     <th>Data</th>
-                                    <th>Empresa</th>
+                                    <th>Categoria</th>
                                 </tr>
                                 </thead>
                                 <tbody id="transactionTable">
-                                <tr>
-                                    <td>R$ 300,00</td>
-                                    <td>18/11/2024</td>
-                                    <td>iFood</td>
-                                </tr>
-                                <tr>
-                                    <td>R$ 300,00</td>
-                                    <td>17/10/2024</td>
-                                    <td>Apple</td>
-                                </tr>
-                                <tr>
-                                    <td>R$ 300,00</td>
-                                    <td>10/10/2024</td>
-                                    <td>McDonald's</td>
-                                </tr>
+                                <c:forEach items="${investimentos}" var="investimento">
+                                    <tr>
+                                        <td>${investimento.valor}</td>
+                                        <td>${investimento.date}</td>
+                                        <td>${investimento.categoria.nome}</td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

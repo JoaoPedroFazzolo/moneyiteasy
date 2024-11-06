@@ -13,16 +13,16 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.jsp">Visão Geral</a>
+                    <a class="nav-link active" href="index">Visão Geral</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="receita.jsp">Receitas</a>
+                    <a class="nav-link" href="receita">Receitas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="despesa.jsp">Despesas</a>
+                    <a class="nav-link" href="despesa">Despesas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="investimento.jsp">Investimentos</a>
+                    <a class="nav-link" href="investimento">Investimentos</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center">

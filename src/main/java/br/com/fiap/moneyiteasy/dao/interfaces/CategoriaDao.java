@@ -11,5 +11,5 @@ public interface CategoriaDao {
 
     void editarCategoria(Categoria categoria) throws DBException;
 
-    List<Categoria> listar();
+    List<Categoria> listar(String tipo) throws DBException;
 }

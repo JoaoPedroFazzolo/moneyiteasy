@@ -153,7 +153,7 @@ public class OracleReceitaDao implements ReceitaDao {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("ID_RECEITA");
-                double valor = rs.getInt("VALOR_RECEITA");
+                double valor = rs.getDouble("VALOR_RECEITA");
                 LocalDate data = rs.getDate("DT_RECEITA").toLocalDate();
                 int idCategoria = rs.getInt("ID_CATEGORIA");
                 String nomeCategoria = rs.getString("NOME_CATEGORIA");
