@@ -32,11 +32,9 @@ public class IndexServlet extends HttpServlet {
         try{
             double totalDespesa = dao.totalDespesa();
             double totalReceita = dao.totalReceita();
-            double totalInvestimento = dao.totalInvestimento();
-            double saldoTotal = totalReceita - totalInvestimento - totalDespesa;
+            double saldoTotal = totalReceita - totalDespesa;
             req.setAttribute("totalDespesa", totalDespesa);
             req.setAttribute("totalReceita", totalReceita);
-            req.setAttribute("totalInvestimento", totalInvestimento);
             req.setAttribute("saldoTotal", saldoTotal);
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } catch (DBException e) {

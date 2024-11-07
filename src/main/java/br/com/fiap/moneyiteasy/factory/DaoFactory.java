@@ -17,7 +17,5 @@ public class DaoFactory {
 
     public static DespesaDao getDespesaDao() {return new OracleDespesaDao();}
 
-    public static InvestimentoDao getInvestimentoDao() {return new OracleInvestimentoDao();}
-
     public static CalculosDao getCalculosDao() {return new OracleCalculosDao();}
 }

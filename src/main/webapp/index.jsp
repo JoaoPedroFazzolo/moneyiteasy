@@ -22,7 +22,8 @@
 <!-- Saldo Geral -->
 <div class="container-fluid">
     <div class="row g-2 m-0">
-        <div class="col-md-3">
+
+        <div class="col-md-4">
             <div class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Saldo Geral</p>
@@ -32,7 +33,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Receitas</p>
@@ -42,7 +43,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Despesas</p>
@@ -52,30 +53,15 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
-                <div>
-                    <p class="fs-6 p-3 text-center">Investimentos</p>
-                    <p class="fs-5 fw-bold text-center">${totalInvestimento}</p>
-                </div>
-                <img src="resources/images/active_line.svg" width="36" height="36" alt="Linha verde decrescente">
-            </div>
-        </div>
-
-
-        <!-- Adicionar Receita, Despesa, Investimento-->
+        <!-- Adicionar Receita e Despesa-->
         <div class="row g-2 py-1">
-            <div class="col-md-4 d-flex justify-content-around">
+            <div class="col-md-6 d-flex justify-content-around">
                 <button class="btn btn-outline-success w-100 fs-6 fw-bold" style="background-color: #B5EFC9;"
                         data-bs-toggle="modal" data-bs-target="#addIncomeModal">Adicionar Receita</button>
             </div>
-            <div class="col-md-4 d-flex justify-content-around">
+            <div class="col-md-6 d-flex justify-content-around">
                 <button class="btn btn-outline-danger w-100 fs-6 fw-bold" style="background-color: #eba1a7;"
                         data-bs-toggle="modal" data-bs-target="#addExpenseModal">Adicionar Despesa</button>
-            </div>
-            <div class="col-md-4 d-flex justify-content-around">
-                <button class="btn btn-outline-primary w-100 fs-6 fw-bold" style="background-color: #BBE8F2;"
-                        data-bs-toggle="modal" data-bs-target="#addInvestmentModal">Adicionar Investimento</button>
             </div>
         </div>
 
@@ -149,70 +135,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal para Adicionar Investimento -->
-        <div class="modal fade" id="addInvestmentModal" tabindex="-1" aria-labelledby="addInvestmentModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title fw-bold" id="addInvestmentModalLabel">Adicionar Investimento</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="investimento" method="post">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="InvestmentValue" class="form-label">Valor</label>
-                                <input type="number" name="valorInvestimento" class="form-control input-green" id="InvestmentValue" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="InvestmentDate" class="form-label">Data</label>
-                                <input type="date" name="dataInvestimento" class="form-control input-green" id="InvestmentDate" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="InvestmentCategory" class="form-label">Categoria</label>
-                                <input type="text" name="categoriaInvestimento" class="form-control input-green" id="InvestmentCategory" required>
-                            </div>
-                        </div>
-                        <div class=" col-md-12 modal-footer">
-                            <button type="submit" value="Salvar" class="btn btn-modal-salvar fw-bold w-100" data-bs-dimiss="modal">Adicionar
-                                Investimento</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Minhas Contas -->
-        <div class="bg-white rounded col-md-12">
-            <div class="p-2">
-                <p class="fs-5 fw-bold">Minhas contas</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <img class="me-2" src="resources/images/bank.svg" width="32" height="32" alt="Nubank">
-                        <div>
-                            <p class="custom-card-subtitle">Nubank</p>
-                            <p class="custom-card-subtitle">Conta Corrente</p>
-                        </div>
-                    </div>
-                    <p class="pe-2 fs-6 fw-bold">R$ 500,00</p>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div class="d-flex align-items-center">
-                        <img class="me-2" src="resources/images/bank.svg" width="32" height="32" alt="C6 Bank">
-                        <div>
-                            <p class="custom-card-subtitle">C6 Bank</p>
-                            <p class="custom-card-subtitle">Conta Corrente</p>
-                        </div>
-                    </div>
-                    <p class="pe-2 fs-6 fw-bold">R$ 500,00</p>
-                </div>
-                <button class="btn btn-lg btn-outline-success w-100 fs-6 fw-bold" style="background-color: #B5EFC9;">Nova
-                    Conta</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Filtro de Transações -->
     <div class="row g-3 my-2">

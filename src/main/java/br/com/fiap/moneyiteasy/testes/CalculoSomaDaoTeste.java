@@ -10,7 +10,6 @@ public class CalculoSomaDaoTeste {
         CalculosDao dao = DaoFactory.getCalculosDao();
 
         dao.totalDespesa();
-        dao.totalInvestimento();
         dao.totalReceita();
     }
 }

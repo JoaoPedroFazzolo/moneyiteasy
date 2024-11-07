@@ -75,10 +75,9 @@ public class DespesaServlet extends HttpServlet {
     private void totaisTransacoes(HttpServletRequest req) throws ServletException, IOException {
         try{
             double totalDespesa = totaisDao.totalDespesa();
-            double totalInvestimento = totaisDao.totalInvestimento();
-            double saldoTotal = totalDespesa + totalInvestimento;
+            double totalReceita = totaisDao.totalReceita();
+            double saldoTotal = totalReceita - totalDespesa;
             req.setAttribute("totalDespesa", totalDespesa);
-            req.setAttribute("totalInvestimento", totalInvestimento);
             req.setAttribute("saldoTotal", saldoTotal);
         } catch (DBException e) {
             e.printStackTrace();

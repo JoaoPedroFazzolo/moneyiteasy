@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -24,7 +26,7 @@
 <!-- Saldo Geral -->
 <div class="container-fluid">
     <div class="row g-2 m-0">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
@@ -35,7 +37,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
@@ -43,17 +45,6 @@
                     <p class="fs-5 fw-bold text-center">${totalReceita}</p>
                 </div>
                 <img src="resources/images/up_line.svg" width="36" height="36" alt="Linha verde crescente">
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div
-                    class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
-                <div>
-                    <p class="fs-6 p-3 text-center">Investimentos</p>
-                    <p class="fs-5 fw-bold text-center">${totalInvestimento}</p>
-                </div>
-                <img src="resources/images/active_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>
         </div>
 
@@ -77,7 +68,15 @@
                                 <c:forEach items="${receitas}" var="receita">
                                     <tr>
                                         <td>${receita.valor}</td>
-                                        <td>${receita.date}</td>
+                                        <td>
+                                            <fmt:parseDate
+                                                    value="${receita.date}"
+                                                    pattern="yyyy-MM-dd"
+                                                    var="dateFmt"/>
+                                            <fmt:formatDate
+                                                    value="${dateFmt}"
+                                                    pattern="dd/MM/yyyy"/>
+                                        </td>
                                         <td>${receita.categoria.nome}</td>
                                         <td>
                                             <c:url value="receitas" var="link">

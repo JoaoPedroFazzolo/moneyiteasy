@@ -66,32 +66,4 @@ public class OracleCalculosDao implements CalculosDao {
         }
         return totalReceita;
     }
-
-    @Override
-    public double totalInvestimento() throws DBException {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        double totalInvestimento = 0;
-        try {
-            conexao = ConnectionManager.getInstance().getConnection();
-            String sql = "SELECT SUM(VALOR_INVESTIMENTO) FROM TB_INVESTIMENTO";
-            stmt = conexao.prepareStatement(sql);
-            rs = stmt.executeQuery();
-            if (rs.next()) {
-                totalInvestimento = rs.getDouble(1); // Obtém o valor da primeira coluna
-                System.out.println("Total das investimento: " + totalInvestimento);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-                stmt.close();
-                conexao.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return totalInvestimento;
-    }
 }

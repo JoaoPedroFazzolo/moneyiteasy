@@ -6,6 +6,4 @@ public interface CalculosDao {
     double totalDespesa() throws DBException;
 
     double totalReceita() throws DBException;
-
-    double totalInvestimento() throws DBException;
 }

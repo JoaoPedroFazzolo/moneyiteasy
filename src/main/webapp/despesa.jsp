@@ -1,12 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visão Geral | Money It Easy</title>
+    <title>Despesas</title>
 
     <link rel="shortcut icon" href="resources/images/logo_money_icon.svg" type="image/x-icon">
     <!-- Bootstrap -->
@@ -24,7 +26,8 @@
 <!-- Saldo Geral -->
 <div class="container-fluid">
     <div class="row g-2 m-0">
-        <div class="col-md-4">
+
+        <div class="col-md-6">
             <div
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
@@ -35,7 +38,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
@@ -43,17 +46,6 @@
                     <p class="fs-5 fw-bold text-center">${totalDespesa}</p>
                 </div>
                 <img src="resources/images/down_line.svg" width="36" height="36" alt="Linha verde decrescente">
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div
-                    class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
-                <div>
-                    <p class="fs-6 p-3 text-center">Investimentos</p>
-                    <p class="fs-5 fw-bold text-center">${totalInvestimento}</p>
-                </div>
-                <img src="resources/images/active_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>
         </div>
 
@@ -77,7 +69,15 @@
                                 <c:forEach items="${listaDespesas}" var="listaDespesa">
                                     <tr>
                                         <td>${listaDespesa.valor}</td>
-                                        <td>${listaDespesa.date}</td>
+                                        <td>
+                                            <fmt:parseDate
+                                                    value="${listaDespesa.date}"
+                                                    pattern="yyyy-MM-dd"
+                                                    var="dateFmt"/>
+                                            <fmt:formatDate
+                                                    value="${dateFmt}"
+                                                    pattern="dd/MM/yyyy"/>
+                                        </td>
                                         <td>${listaDespesa.categoria.nome}</td>
                                         <td>
                                             <c:url value="despesas" var="link">
