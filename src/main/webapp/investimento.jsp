@@ -19,7 +19,7 @@
 
 <body class="container body-dashboard">
 
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 
 <!-- Saldo Geral -->
 <div class="container-fluid">
@@ -29,7 +29,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-4 p-3 text-center">Saldo Geral</p>
-                    <p class="fs-3 fw-bold text-center">R$ 800,00</p>
+                    <p class="fs-3 fw-bold text-center">${saldoTotal}</p>
                 </div>
                 <img src="resources/images/eye_on.svg" width="36" height="36" alt="Olho aberto">
             </div>
@@ -40,7 +40,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-4 p-3 text-center">Total de Investimentos</p>
-                    <p class="fs-3 fw-bold text-center">R$ 900,00</p>
+                    <p class="fs-3 fw-bold text-center">${totalInvestimento}</p>
                 </div>
                 <img src="resources/images/active_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>
@@ -60,6 +60,7 @@
                                     <th>Valor Investido</th>
                                     <th>Data</th>
                                     <th>Categoria</th>
+                                    <th>Editar</th>
                                 </tr>
                                 </thead>
                                 <tbody id="transactionTable">
@@ -68,6 +69,18 @@
                                         <td>${investimento.valor}</td>
                                         <td>${investimento.date}</td>
                                         <td>${investimento.categoria.nome}</td>
+                                        <td>
+                                            <c:url value="investimentos" var="link">
+                                                <c:param name="acao" value="editar-investimento"/>
+                                                <c:param name="codigo" value="${investimento.idTransacao}"/>
+                                            </c:url>
+                                            <a href="${link}" class="btn btn-primary">Editar</a>
+
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#excluirModal"
+                                                    onclick="codigoExcluir.value = ${investimento.idTransacao}">Excluir
+                                            </button>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -80,11 +93,36 @@
     </div>
 </div>
 
-<%@include file="footer.jsp"%>
+<div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Exclusão</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Você confirma a exclusão deste Investimento?</h4>
+                <p><strong>Atenção!</strong> Esta ação é irreversível.</p>
+            </div>
+            <div class="modal-footer">
+
+                <form action="investimento" method="post">
+                    <input type="hidden" name="acao" value="excluir">
+                    <input type="hidden" name="codigoExcluir" id="codigoExcluir">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<%@include file="footer.jsp" %>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-                crossorigin="anonymous"></script>
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

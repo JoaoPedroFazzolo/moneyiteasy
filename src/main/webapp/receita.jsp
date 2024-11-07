@@ -18,7 +18,7 @@
 
 <body class="container body-dashboard">
 
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 
 
 <!-- Saldo Geral -->
@@ -79,6 +79,19 @@
                                         <td>${receita.valor}</td>
                                         <td>${receita.date}</td>
                                         <td>${receita.categoria.nome}</td>
+                                        <td>
+                                            <c:url value="receitas" var="link">
+                                                <c:param name="acao" value="editar-receita"/>
+                                                <c:param name="codigo" value="${receita.idTransacao}"/>
+                                            </c:url>
+                                            <a href="${link}" class="btn btn-primary">Editar</a>
+
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#excluirModal"
+                                                    onclick="codigoExcluir.value = ${receita.idTransacao}">Excluir
+                                            </button>
+
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -90,12 +103,36 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Exclusão</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Você confirma a exclusão desta receita?</h4>
+                <p><strong>Atenção!</strong> Esta ação é irreversível.</p>
+            </div>
+            <div class="modal-footer">
 
-<%@include file="footer.jsp"%>
+                <form action="receita" method="post">
+                    <input type="hidden" name="acao" value="excluir">
+                    <input type="hidden" name="codigoExcluir" id="codigoExcluir">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-                crossorigin="anonymous"></script>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <%@include file="footer.jsp" %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>

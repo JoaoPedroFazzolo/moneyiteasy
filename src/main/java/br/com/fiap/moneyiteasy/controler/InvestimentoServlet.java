@@ -23,12 +23,13 @@ public class InvestimentoServlet extends HttpServlet {
 
     private InvestimentoDao dao;
     private CalculosDao totaisDao;
-    private static final String tipoCategoria = "despesa";
+    private static final String tipoCategoria = "investimento";
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         dao = DaoFactory.getInvestimentoDao();
+        totaisDao = DaoFactory.getCalculosDao();
     }
 
     @Override
@@ -37,7 +38,7 @@ public class InvestimentoServlet extends HttpServlet {
         try {
             double valor = Double.parseDouble(req.getParameter("valorInvestimento"));
             LocalDate date = LocalDate.parse(req.getParameter("dataInvestimento"));
-            int idCategoria = 11;
+            int idCategoria = 10;
             String nomeCategoria = req.getParameter("categoriaInvestimento");
             String tipoCategoria = "INVESTIMENTO";
             Categoria categoria = new Categoria(idCategoria, nomeCategoria, tipoCategoria);
@@ -59,17 +60,30 @@ public class InvestimentoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            listarInvestimento(req, resp);
+            listarInvestimento(req);
+            totaisTransacoes(req);
+            req.getRequestDispatcher("investimento.jsp").forward(req, resp);
         } catch (DBException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void listarInvestimento(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, DBException {
+    private void listarInvestimento(HttpServletRequest req) throws ServletException, IOException, DBException {
         List<Investimento> investimentos = dao.listaInvestimento();
         req.setAttribute("investimentos", investimentos);
-        req.getRequestDispatcher("investimento.jsp").forward(req, resp);
+    }
 
+    private void totaisTransacoes(HttpServletRequest req) throws ServletException, IOException {
+        try{
+            double totalDespesa = totaisDao.totalDespesa();
+            double totalReceita = totaisDao.totalReceita();
+            double totalInvestimento = totaisDao.totalInvestimento();
+            double saldoTotal = totalReceita - totalInvestimento - totalDespesa;
+            req.setAttribute("totalInvestimento", totalInvestimento);
+            req.setAttribute("saldoTotal", saldoTotal);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 
 }
