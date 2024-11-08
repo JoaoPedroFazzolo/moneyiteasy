@@ -62,7 +62,7 @@ public class DespesaServlet extends HttpServlet {
             e.printStackTrace();
             req.setAttribute("msg", "Erro ao excluir receita");
         }
-        req.getRequestDispatcher("despesa?acao=listarDespesa").forward(req, resp);
+        resp.sendRedirect("despesa?acao=listarDespesa");
     }
 
     @Override
@@ -77,6 +77,7 @@ public class DespesaServlet extends HttpServlet {
                 } catch (DBException e) {
                     throw new RuntimeException(e);
                 }
+                break;
             case "formCadastroDespesa":
                 try {
                     abrirFormCadastro(req, resp);
@@ -118,9 +119,7 @@ public class DespesaServlet extends HttpServlet {
         int idCategoria = Integer.parseInt(req.getParameter("categoriaDespesa"));
         Categoria categoria = new Categoria();
         categoria.setCodigo(idCategoria);
-        System.out.println(categoria.getCodigo());
         Despesa despesa = new Despesa(0, valor, date, categoria);
-        System.out.println(despesa.getCategoria().getCodigo());
         try {
             daoDespesa.cadastraDespesa(despesa);
             req.setAttribute("despesa", "Despesa cadastrada com sucesso");

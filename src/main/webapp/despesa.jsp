@@ -2,25 +2,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Despesas</title>
-
-    <link rel="shortcut icon" href="resources/images/logo_money_icon.svg" type="image/x-icon">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="resources/css/style.css">
-</head>
-
-<body class="container body-dashboard">
-
 <%@include file="header.jsp"%>
 
 <!-- Saldo Geral -->
@@ -31,8 +12,8 @@
             <div
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
-                    <p class="fs-6 p-3 text-center">Total de Despesas</p>
-                    <p class="fs-5 fw-bold text-center">R$ ${saldoTotal}</p>
+                    <p class="fs-6 p-3 text-center">Saldo Geral</p>
+                    <p class="fs-5 fw-bold text-center"><fmt:formatNumber value="${saldoTotal}" type="currency" currencySymbol="R$" maxFractionDigits="2" minFractionDigits="2" /></p>
                 </div>
                 <img src="resources/images/eye_on.svg" width="36" height="36" alt="Olho aberto">
             </div>
@@ -43,7 +24,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Despesas</p>
-                    <p class="fs-5 fw-bold text-center">R$ ${totalDespesa}</p>
+                    <p class="fs-5 fw-bold text-center"><fmt:formatNumber value="${totalDespesa}" type="currency" currencySymbol="R$" maxFractionDigits="2" minFractionDigits="2" /></p>
                 </div>
                 <img src="resources/images/down_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>
@@ -80,7 +61,7 @@
                                         </td>
                                         <td>${despesa.categoria.nome}</td>
                                         <td>
-                                            <c:url value="despesas" var="link">
+                                            <c:url value="despesa" var="link">
                                                 <c:param name="acao" value="formEditarDespesa"/>
                                                 <c:param name="codigo" value="${despesa.idTransacao}"/>
                                             </c:url>

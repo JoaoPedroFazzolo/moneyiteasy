@@ -1,22 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edição de receitas</title>
-
-    <link rel="shortcut icon" href="resources/images/logo_money_icon.svg" type="image/x-icon">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="resources/css/style.css">
-</head>
-<body>
 <%@include file="header.jsp" %>
+
 <div class="container">
     <div class="mt-5 ms-5 me-5">
         <div class="card mb-3">
@@ -39,8 +24,7 @@
                         <input type="text" name="valorReceita" id="valorReceita" class="form-control" value="${receitaEditar.valor}">
                     </div>
                     <div class="form-group">
-                        <label for="dataReceita">Data
-                        </label>
+                        <label for="dataReceita">Data</label>
                         <input type="date" name="dataReceita" id="dataReceita" class="form-control" value="${receitaEditar.date}">
                     </div>
                     <div class="form-group">
@@ -48,8 +32,9 @@
                         <select name="categoriaReceita" id="categoriaReceita" class="form-control">
                             <option value="0">Selecione</option>
                             <c:forEach items="${listaCategorias}" var="c">
-                            <option value="${c.codigo}"> ${c.codigo} - ${c.nome}</option>
+                                <option value="${c.codigo}">${c.nome}</option>
                             </c:forEach>
+                        </select>
                     </div>
                     <input type="submit" value="Salvar" class="btn btn-success mt-3">
                     <a href="receita?acao=listarReceita" class="btn btn-secondary mt-3">Cancelar</a>

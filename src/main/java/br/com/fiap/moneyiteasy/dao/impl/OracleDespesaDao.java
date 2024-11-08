@@ -53,8 +53,8 @@ public class OracleDespesaDao implements DespesaDao {
             String sql = "UPDATE TB_DESPESA SET VALOR_DESPESA = ?, ID_CATEGORIA = ?, DT_DESPESA = ? WHERE ID_DESPESA = ?";
             stmt = conexao.prepareStatement(sql);
             stmt.setDouble(1, despesa.getValor());
-            stmt.setDate(2, Date.valueOf(despesa.getDate()));
-            stmt.setInt(3, despesa.getCategoria().getCodigo());
+            stmt.setInt(2, despesa.getCategoria().getCodigo());
+            stmt.setDate(3, Date.valueOf(despesa.getDate()));
             stmt.setInt(4, despesa.getIdTransacao());
             stmt.executeUpdate();
             System.out.println("Despesa atualizada com sucesso!");
@@ -115,7 +115,7 @@ public class OracleDespesaDao implements DespesaDao {
                 int categoriaId = rs.getInt("ID_CATEGORIA");
                 int usuarioId = rs.getInt("ID_USUARIO");
                 String nomeCategoria = rs.getString("NOME_CATEGORIA");
-                String tipoCategoria = rs.getString("TIPO_CATEGORIA");
+                String tipoCategoria = rs.getString("TIPO");
                 Categoria categoria = new Categoria(categoriaId, nomeCategoria, tipoCategoria);
                 despesa = new Despesa(id, valor, date, categoria);
             }

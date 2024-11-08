@@ -44,16 +44,15 @@ public class LoginServlet extends HttpServlet {
         Login login = new Login(email, senha);
 
         if (dao.validarLogin(login)) {
-            try {
-                usuario.setNome(String.valueOf(usuarioDao.buscarNomeUsuario(email)));
+            try {;
+                usuario = usuarioDao.buscarNomeUsuario(email);
                 System.out.println(usuario.getNome());
             } catch (DBException e) {
                 throw new RuntimeException(e);
             }
             HttpSession session = request.getSession();
             session.setAttribute("user", email);
-            String mensagem =
-                    "Um login foi realizado na plataforma em " + LocalDate.now();
+            String mensagem = "Um login foi realizado na plataforma em " + LocalDate.now();
             String primeiroNome = usuario.getNome().trim().split(" ")[0];
             System.out.println(primeiroNome);
             request.setAttribute("nomeUsuario",primeiroNome);

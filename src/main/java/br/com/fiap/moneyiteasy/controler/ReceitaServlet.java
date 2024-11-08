@@ -147,10 +147,6 @@ public class ReceitaServlet extends HttpServlet {
             Categoria categoria = new Categoria();
             categoria.setCodigo(idCategoria);
             Receita receita = new Receita(id, valor, date, categoria);
-            System.out.println(receita.getCategoria().getCodigo());
-            System.out.println(receita.getDate());
-            System.out.println(receita.getIdTransacao());
-            System.out.println(receita.getValor());
             daoReceita.atualizaReceita(receita);
             req.setAttribute("receita", "Receita atualizada com sucesso");
             resp.sendRedirect("receita?acao=listarReceita");

@@ -114,7 +114,7 @@ public class OracleUsuarioDao implements UsuarioDao {
                 String cpf = rs.getString("NR_CPF");
                 LocalDate data = rs.getDate("CRIACAO_USER").toLocalDate();
                 String emailBd = rs.getString("DS_EMAIL");
-                login.setEmail(email);
+                login.setEmail(emailBd);
                 usuario = new Usuario(id, nome, cpf, data, login);
             }
         } catch (SQLException e) {

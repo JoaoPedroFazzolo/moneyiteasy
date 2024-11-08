@@ -8,8 +8,9 @@ import java.util.Properties;
 
 public class EmailBo {
 
-    private static final String EMAIL_FROM = "seu-usuario@gmail.com";
-    private static final String APP_PASSWORD = "sua-senha";
+    private static final String EMAIL_FROM = "moneyiteasy42@gmail.com";
+    private static final String APP_PASSWORD = "mvmd atyn ccbg alyu";
+//  senha email: m@n$y1teasy
 
     public void enviarEmail(
             String destinatario,
