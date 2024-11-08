@@ -19,7 +19,7 @@ public class Categoria {
         return codigo;
     }
 
-    public void setCodigo(int id) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

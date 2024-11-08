@@ -23,7 +23,6 @@ public class OracleCalculosDao implements CalculosDao {
             rs = stmt.executeQuery();
             if (rs.next()) {
                 totalDespesa = rs.getDouble(1); // Obtém o valor da primeira coluna
-                System.out.println("Total das despesas: " + totalDespesa);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,7 +50,6 @@ public class OracleCalculosDao implements CalculosDao {
             rs = stmt.executeQuery();
             if (rs.next()) {
                 totalReceita = rs.getDouble(1); // Obtém o valor da primeira coluna
-                System.out.println("Total das receitas: " + totalReceita);
             }
         } catch (SQLException e) {
             e.printStackTrace();

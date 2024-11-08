@@ -10,5 +10,5 @@ public interface DespesaDao {
     void atualizaDespesa(Despesa despesa) throws DBException;
     void removerDespesa(int codigo) throws DBException;
     Despesa buscar(int codigo) throws DBException;
-    List<Despesa> listaDespesas() throws DBException;
+    List<Despesa> listaDespesa() throws DBException;
 }

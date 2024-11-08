@@ -1,5 +1,7 @@
 package br.com.fiap.moneyiteasy.model;
 
+import br.com.fiap.moneyiteasy.util.CriptografiaUtils;
+
 import java.time.LocalDate;
 
 public class Usuario {
@@ -10,6 +12,7 @@ public class Usuario {
     private Login login;
 
     public Usuario() {
+        super();
     }
 
     public Usuario(int idUsuario, String nome, String cpf, LocalDate dateCriacaoUser, Login login) {

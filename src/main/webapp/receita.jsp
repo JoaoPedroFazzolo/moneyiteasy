@@ -79,8 +79,8 @@
                                         </td>
                                         <td>${receita.categoria.nome}</td>
                                         <td>
-                                            <c:url value="receitas" var="link">
-                                                <c:param name="acao" value="editar-receita"/>
+                                            <c:url value="receita" var="link">
+                                                <c:param name="acao" value="formEditarReceita"/>
                                                 <c:param name="codigo" value="${receita.idTransacao}"/>
                                             </c:url>
                                             <a href="${link}" class="btn btn-primary">Editar</a>
@@ -115,7 +115,7 @@
             </div>
             <div class="modal-footer">
 
-                <form action="receita" method="post">
+                <form action="receita?acao=excluirReceitas" method="post">
                     <input type="hidden" name="acao" value="excluir">
                     <input type="hidden" name="codigoExcluir" id="codigoExcluir">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>

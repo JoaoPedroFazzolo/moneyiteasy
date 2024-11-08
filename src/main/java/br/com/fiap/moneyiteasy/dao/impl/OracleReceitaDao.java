@@ -31,6 +31,7 @@ public class OracleReceitaDao implements ReceitaDao {
             stmt.setDouble(1, receita.getValor());
             stmt.setDate(2, Date.valueOf(receita.getDate()));
             stmt.setInt(3, 3);
+            System.out.println(receita.getCategoria().getCodigo());
             stmt.setInt(4, receita.getCategoria().getCodigo());
             stmt.executeUpdate();
             System.out.println("Receita cadastrada com sucesso!");
@@ -56,8 +57,8 @@ public class OracleReceitaDao implements ReceitaDao {
             String sql = "UPDATE TB_RECEITA SET VALOR_RECEITA = ?, ID_CATEGORIA = ?, DT_RECEITA = ? WHERE ID_RECEITA = ?";
             stmt = conexao.prepareStatement(sql);
             stmt.setDouble(1, receita.getValor());
-            stmt.setDate(2, Date.valueOf(receita.getDate()));
-            stmt.setInt(3, receita.getCategoria().getCodigo());
+            stmt.setInt(2, receita.getCategoria().getCodigo());
+            stmt.setDate(3, Date.valueOf(receita.getDate()));
             stmt.setInt(4, receita.getIdTransacao());
             stmt.executeUpdate();
             System.out.println("Receita atualizada com sucesso!");
@@ -119,7 +120,7 @@ public class OracleReceitaDao implements ReceitaDao {
                 int categoriaId = rs.getInt("ID_CATEGORIA");
                 int usuarioId = rs.getInt("ID_USUARIO");
                 String nomeCategoria = rs.getString("NOME_CATEGORIA");
-                String tipoCategoria = rs.getString("TIPO_CATEGORIA");
+                String tipoCategoria = rs.getString("TIPO");
                 Categoria categoria = new Categoria(categoriaId, nomeCategoria, tipoCategoria);
                 receita = new Receita(id, valor, date, categoria);
             }

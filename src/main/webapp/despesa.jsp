@@ -66,22 +66,22 @@
                                 </tr>
                                 </thead>
                                 <tbody id="transactionTable">
-                                <c:forEach items="${listaDespesas}" var="listaDespesa">
+                                <c:forEach items="${despesas}" var="despesa">
                                     <tr>
-                                        <td>${listaDespesa.valor}</td>
+                                        <td>${despesa.valor}</td>
                                         <td>
                                             <fmt:parseDate
-                                                    value="${listaDespesa.date}"
+                                                    value="${despesa.date}"
                                                     pattern="yyyy-MM-dd"
                                                     var="dateFmt"/>
                                             <fmt:formatDate
                                                     value="${dateFmt}"
                                                     pattern="dd/MM/yyyy"/>
                                         </td>
-                                        <td>${listaDespesa.categoria.nome}</td>
+                                        <td>${despesa.categoria.nome}</td>
                                         <td>
                                             <c:url value="despesas" var="link">
-                                                <c:param name="acao" value="editar-despesa"/>
+                                                <c:param name="acao" value="formEditarDespesa"/>
                                                 <c:param name="codigo" value="${despesa.idTransacao}"/>
                                             </c:url>
                                             <a href="${link}" class="btn btn-primary">Editar</a>
@@ -114,7 +114,7 @@
             </div>
             <div class="modal-footer">
 
-                <form action="despesa" method="post">
+                <form action="despesa?acao=excluirDespesas" method="post">
                     <input type="hidden" name="acao" value="excluir">
                     <input type="hidden" name="codigoExcluir" id="codigoExcluir">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>

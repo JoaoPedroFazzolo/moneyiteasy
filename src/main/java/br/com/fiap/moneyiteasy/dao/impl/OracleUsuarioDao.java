@@ -3,12 +3,11 @@ package br.com.fiap.moneyiteasy.dao.impl;
 import br.com.fiap.moneyiteasy.dao.ConnectionManager;
 import br.com.fiap.moneyiteasy.dao.interfaces.UsuarioDao;
 import br.com.fiap.moneyiteasy.exception.DBException;
+import br.com.fiap.moneyiteasy.model.Login;
 import br.com.fiap.moneyiteasy.model.Usuario;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.List;
 
 public class OracleUsuarioDao implements UsuarioDao {
@@ -95,5 +94,40 @@ public class OracleUsuarioDao implements UsuarioDao {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public Usuario buscarNomeUsuario(String email) throws DBException {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Usuario usuario = null;
+        Login login = new Login();
+        try{
+            conexao = ConnectionManager.getInstance().getConnection();
+            String sql = "SELECT * FROM TB_USUARIO WHERE DS_EMAIL = ?";
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                int id = rs.getInt("ID_USUARIO");
+                String nome = rs.getString("NOME_USUARIO");
+                String cpf = rs.getString("NR_CPF");
+                LocalDate data = rs.getDate("CRIACAO_USER").toLocalDate();
+                String emailBd = rs.getString("DS_EMAIL");
+                login.setEmail(email);
+                usuario = new Usuario(id, nome, cpf, data, login);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                stmt.close();
+                rs.close();
+                conexao.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return usuario;
     }
 }

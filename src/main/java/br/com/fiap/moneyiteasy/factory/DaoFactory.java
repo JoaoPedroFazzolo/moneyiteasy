@@ -1,5 +1,6 @@
 package br.com.fiap.moneyiteasy.factory;
 
+import br.com.fiap.moneyiteasy.bo.EmailBo;
 import br.com.fiap.moneyiteasy.dao.impl.*;
 import br.com.fiap.moneyiteasy.dao.interfaces.*;
 
@@ -18,4 +19,7 @@ public class DaoFactory {
     public static DespesaDao getDespesaDao() {return new OracleDespesaDao();}
 
     public static CalculosDao getCalculosDao() {return new OracleCalculosDao();}
+
+    public  static EmailBo getEmailBo() {return new EmailBo();
+    }
 }

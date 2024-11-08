@@ -1,11 +1,13 @@
 package br.com.fiap.moneyiteasy.controler;
 
 import br.com.fiap.moneyiteasy.dao.interfaces.CalculosDao;
+import br.com.fiap.moneyiteasy.dao.interfaces.CategoriaDao;
 import br.com.fiap.moneyiteasy.dao.interfaces.DespesaDao;
 import br.com.fiap.moneyiteasy.exception.DBException;
 import br.com.fiap.moneyiteasy.factory.DaoFactory;
 import br.com.fiap.moneyiteasy.model.Categoria;
 import br.com.fiap.moneyiteasy.model.Despesa;
+import br.com.fiap.moneyiteasy.model.Receita;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,6 +24,7 @@ public class DespesaServlet extends HttpServlet {
 
     private DespesaDao daoDespesa;
     private CalculosDao totaisDao;
+    private CategoriaDao categoriaDao;
     private static final String tipoCategoria = "despesa";
 
     @Override
@@ -29,46 +32,128 @@ public class DespesaServlet extends HttpServlet {
         super.init(config);
         daoDespesa = DaoFactory.getDespesaDao();
         totaisDao = DaoFactory.getCalculosDao();
+        categoriaDao = DaoFactory.getCategoriaDao();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String acao = req.getParameter("acao");
+        switch (acao) {
+            case "cadastrarDespesas":
+                cadastrarDespesa(req, resp);
+                break;
+            case "editarDespesas":
+                editarDespesa(req, resp);
+                break;
+            case "excluirDespesas":
+                excluirDespesas(req,resp);
+                break;
 
-        try {
-            double valor = Double.parseDouble(req.getParameter("valorDespesa"));
-            LocalDate date = LocalDate.parse(req.getParameter("dataDespesa"));
-            int idCategoria = 5;
-            String nomeCategoria = req.getParameter("categoriaDespesa");
-            String tipoCategoria = "DESPESA";
-            Categoria categoria = new Categoria(idCategoria, nomeCategoria, tipoCategoria);
-            Despesa despesa = new Despesa(0, valor, date, categoria);
-
-            daoDespesa.cadastraDespesa(despesa);
-            req.setAttribute("despesa", "Despesa cadastrada com sucesso");
-        }catch (DBException db) {
-            db.printStackTrace();
-            req.setAttribute("despesa", "Erro ao cadastrar despesa");
-        }catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("despesa", "Por favor, valide os dados");
         }
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+    }
 
+    private void excluirDespesas(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idDespesa = Integer.parseInt(req.getParameter("codigoExcluir"));
+        System.out.println(idDespesa);
+        try{
+            daoDespesa.removerDespesa(idDespesa);
+            req.setAttribute("msg", "Despesa removida com sucesso");
+        } catch (DBException e) {
+            e.printStackTrace();
+            req.setAttribute("msg", "Erro ao excluir receita");
+        }
+        req.getRequestDispatcher("despesa.jsp").forward(req, resp);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String acao = req.getParameter("acao");
+        switch (acao) {
+            case "listarDespesa":
+                try {
+                    listarDespesa(req);
+                    totaisTransacoes(req);
+                    req.getRequestDispatcher("despesa.jsp").forward(req, resp);
+                } catch (DBException e) {
+                    throw new RuntimeException(e);
+                }
+            case "formCadastroDespesa":
+                try {
+                    abrirFormCadastro(req, resp);
+                } catch (DBException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "formEditarDespesa":
+                try {
+                    formEditarDespesa(req, resp);
+                } catch (DBException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+        }
+
+    }
+
+    private void abrirFormCadastro(HttpServletRequest req, HttpServletResponse resp) throws DBException, ServletException, IOException {
+        List<Categoria> listaCategorias = categoriaDao.listar(tipoCategoria);
+        req.setAttribute("listaCategorias", listaCategorias);
+        req.getRequestDispatcher("adicionar-despesa.jsp").forward(req, resp);
+    }
+
+    private void formEditarDespesa(HttpServletRequest req, HttpServletResponse resp) throws DBException, ServletException, IOException {
+        List<Categoria> listaCategorias = categoriaDao.listar(tipoCategoria);
+        req.setAttribute("listaCategorias", listaCategorias);
+        int id = Integer.parseInt(req.getParameter("codigo"));
+        Despesa despesa = daoDespesa.buscar(id);
+        req.setAttribute("despesaEditar", despesa);
+        req.getRequestDispatcher("editar-despesa.jsp").forward(req, resp);
+    }
+
+
+    private void cadastrarDespesa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        double valor = Double.parseDouble(req.getParameter("valorDespesa"));
+        LocalDate date = LocalDate.parse(req.getParameter("dataDespesa"));
+        int idCategoria = Integer.parseInt(req.getParameter("categoriaDespesa"));
+        Categoria categoria = new Categoria();
+        categoria.setCodigo(idCategoria);
+        System.out.println(categoria.getCodigo());
+        Despesa despesa = new Despesa(0, valor, date, categoria);
+        System.out.println(despesa.getCategoria().getCodigo());
         try {
-            listarDespesa(req);
-            totaisTransacoes(req);
-            req.getRequestDispatcher("despesa.jsp").forward(req, resp);
-        } catch (DBException e) {
+            daoDespesa.cadastraDespesa(despesa);
+            req.setAttribute("despesa", "Despesa cadastrada com sucesso");
+        } catch (DBException db) {
+            db.printStackTrace();
+            req.setAttribute("despesa", "Erro ao cadastrar despesa");
+        } catch (Exception e) {
             e.printStackTrace();
+            req.setAttribute("despesa", "Por favor, valide os dados");
+        }
+        resp.sendRedirect("despesa?acao=listarDespesa");
+    }
+
+
+    private void editarDespesa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(req.getParameter("codigo"));
+            double valor = Double.parseDouble(req.getParameter("valorDespesa"));
+            LocalDate date = LocalDate.parse(req.getParameter("dataDespesa"));
+            int idCategoria = Integer.parseInt(req.getParameter("categoriaDespesa"));
+            Categoria categoria = new Categoria();
+            categoria.setCodigo(idCategoria);
+            Despesa despesa = new Despesa(id, valor, date, categoria);
+            daoDespesa.atualizaDespesa(despesa);
+            req.setAttribute("receita", "Despesa atualizada com sucesso");
+            resp.sendRedirect("despesa?acao=listarDespesa");
+        } catch (DBException e) {
+            throw new RuntimeException(e);
         }
     }
 
     private void listarDespesa(HttpServletRequest req) throws ServletException, IOException, DBException {
-        List<Despesa> listaDespesas = daoDespesa.listaDespesas();
+        List<Despesa> listaDespesas = daoDespesa.listaDespesa();
         req.setAttribute("listaDespesas", listaDespesas);
     }
 

@@ -56,83 +56,10 @@
         <!-- Adicionar Receita e Despesa-->
         <div class="row g-2 py-1">
             <div class="col-md-6 d-flex justify-content-around">
-                <button class="btn btn-outline-success w-100 fs-6 fw-bold" style="background-color: #B5EFC9;"
-                        data-bs-toggle="modal" data-bs-target="#addIncomeModal">Adicionar Receita</button>
+                <a class="btn btn-outline-success w-100 fs-6 fw-bold" style="background-color: #B5EFC9;" href="receita?acao=formCadastroReceita"> Adicionar Receita</a>
             </div>
             <div class="col-md-6 d-flex justify-content-around">
-                <button class="btn btn-outline-danger w-100 fs-6 fw-bold" style="background-color: #eba1a7;"
-                        data-bs-toggle="modal" data-bs-target="#addExpenseModal">Adicionar Despesa</button>
-            </div>
-        </div>
-
-        <!-- Modal para Adicionar Receita -->
-        <div class="modal fade" id="addIncomeModal" tabindex="-1" aria-labelledby="addIncomeModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title fw-bold" id="addIncomeModalLabel">Adicionar Receita</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="receita" method="post">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="incomeValue" class="form-label">Valor</label>
-                                <input type="number" name="valorReceita" class="form-control input-green" id="incomeValue" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="incomeDate" class="form-label">Data</label>
-                                <input type="date" name="dataReceita" class="form-control input-green" id="incomeDate" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="incomeCategory" class="form-label">Categoria</label>
-                                <select name="listaCategoriaReceita" id="incomeCategory" class="form-control">
-                                    <option value="0">Selecione</option>
-                                    <c:forEach items="${listaCategoriaReceita}" var="c">
-                                        <option value="${c.codigo}">${c.nome}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class=" col-md-12 modal-footer">
-                            <button type="submit" value="Salvar" class="btn btn-modal-salvar fw-bold w-100" data-bs-dismiss="modal">Adicionar
-                                Receita</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal para Adicionar Despesa -->
-        <div class="modal fade" id="addExpenseModal" tabindex="-1" aria-labelledby="addExpenseModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title fw-bold" id="addExpenseModalLabel">Adicionar Despesa</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="despesa" method="post">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="expenseValue" class="form-label">Valor</label>
-                                <input type="number" name="valorDespesa" class="form-control input-green" id="expenseValue" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="expenseDate" class="form-label">Data</label>
-                                <input type="date"  name="dataDespesa" class="form-control input-green" id="expenseDate" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="expenseCategory" class="form-label">Categoria</label>
-                                <input type="text" name="categoriaDespesa" class="form-control input-green" id="expenseCategory" required>
-                            </div>
-                        </div>
-                        <div class=" col-md-12 modal-footer">
-                            <button type="submit" value="Salvar" class="btn btn-modal-salvar fw-bold w-100" data-bs-dimiss="modal">Adicionar
-                                Despesa</button>
-                        </div>
-                    </form>
-                </div>
+                <a class="btn btn-outline-danger w-100 fs-6 fw-bold" style="background-color: #eba1a7;" href="despesa?acao=formCadastroDespesa"> Adicionar Despesa</a>
             </div>
         </div>
 

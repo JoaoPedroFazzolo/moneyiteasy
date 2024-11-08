@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OracleDespesaDao implements DespesaDao {
+
     private Connection conexao;
+
     @Override
     public void cadastraDespesa(Despesa despesa) throws DBException {
         PreparedStatement stmt = null;
@@ -132,7 +134,7 @@ public class OracleDespesaDao implements DespesaDao {
     }
 
     @Override
-    public List<Despesa> listaDespesas() throws DBException {
+    public List<Despesa> listaDespesa() throws DBException {
         List<Despesa> listaDespesa = new ArrayList<Despesa>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
