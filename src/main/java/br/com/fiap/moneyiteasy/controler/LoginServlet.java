@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
             String primeiroNome = usuario.getNome().trim().split(" ")[0];
             System.out.println(primeiroNome);
             request.setAttribute("nomeUsuario",primeiroNome);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index");
             try {
                 bo.enviarEmail(email, "Login Realizado", mensagem);
             } catch (EmailException e) {

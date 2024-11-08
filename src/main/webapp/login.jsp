@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="pt-br" data-bs-theme="light">
@@ -38,7 +38,7 @@
                 <label for="flexCheckDefault">Manter-se conectado</label>
             </div>
             <div class="d-grid gap-2 w-100">
-                <input type="submit" class="btn btn-success fw-bold" value="Salvar"></input>
+                <input type="submit" class="btn btn-success fw-bold" value="Entrar"></input>
                 <a class="btn btn-outline-secondary fw-bold" href="cadastro.jsp" role="button">Cadastre-se</a>
             </div>
         </form>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <header class="bg bg-header">
     <nav class="navbar navbar-expand-md navbar-dark m-3 p-2 header-container">
         <a href="#" class="navbar-brand d-flex align-items-center">

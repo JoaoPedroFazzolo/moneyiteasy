@@ -36,11 +36,11 @@ body {
     background-color: #24C456;
 }
 
-.input-green {
+.btn-green {
     border: 2px solid #D5DADF;
 }
 
-.input-green:hover {
+.btn-green:hover {
     box-shadow: 0 0 10px rgba(116, 255, 149, 0.631);
     border: 2px solid #24C456;
 }

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
@@ -32,7 +32,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Total de Despesas</p>
-                    <p class="fs-5 fw-bold text-center">${saldoTotal}</p>
+                    <p class="fs-5 fw-bold text-center">R$ ${saldoTotal}</p>
                 </div>
                 <img src="resources/images/eye_on.svg" width="36" height="36" alt="Olho aberto">
             </div>
@@ -43,7 +43,7 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Despesas</p>
-                    <p class="fs-5 fw-bold text-center">${totalDespesa}</p>
+                    <p class="fs-5 fw-bold text-center">R$ ${totalDespesa}</p>
                 </div>
                 <img src="resources/images/down_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>

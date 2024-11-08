@@ -46,13 +46,13 @@ public class DespesaServlet extends HttpServlet {
                 editarDespesa(req, resp);
                 break;
             case "excluirDespesas":
-                excluirDespesas(req,resp);
+                excluirDespesa(req,resp);
                 break;
 
         }
     }
 
-    private void excluirDespesas(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void excluirDespesa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDespesa = Integer.parseInt(req.getParameter("codigoExcluir"));
         System.out.println(idDespesa);
         try{
@@ -62,7 +62,7 @@ public class DespesaServlet extends HttpServlet {
             e.printStackTrace();
             req.setAttribute("msg", "Erro ao excluir receita");
         }
-        req.getRequestDispatcher("despesa.jsp").forward(req, resp);
+        req.getRequestDispatcher("despesa?acao=listarDespesa").forward(req, resp);
     }
 
     @Override
@@ -153,8 +153,8 @@ public class DespesaServlet extends HttpServlet {
     }
 
     private void listarDespesa(HttpServletRequest req) throws ServletException, IOException, DBException {
-        List<Despesa> listaDespesas = daoDespesa.listaDespesa();
-        req.setAttribute("listaDespesas", listaDespesas);
+        List<Despesa> despesas = daoDespesa.listaDespesa();
+        req.setAttribute("despesas", despesas);
     }
 
     private void totaisTransacoes(HttpServletRequest req) throws ServletException, IOException {
