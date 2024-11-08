@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <footer class="border-top bg-body-tertiary">
     <div class="d-flex flex-wrap justify-content-between align-items-center py-3 ms-4 me-4">
         <div class="col-md-4 d-flex align-items-center">

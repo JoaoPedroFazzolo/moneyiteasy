@@ -1,25 +1,25 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="pt-br" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="shortcut icon" href="resources/images/logo_money_icon.svg" type="image/x-icon">
-
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="resources/css/style.css">
 
 </head>
-<body class="d-flex flex-column">
-<div class="d-flex align-items-center justify-content-center flex-grow-1 bg-body-tertiary">
+<body class="d-flex flex-column min-vh-100">
+<div class="d-flex align-items-center justify-content-center flex-grow-1 py-4 bg-body-tertiary">
     <main class="w-100 m-auto form-container">
+
         <form action="cadastro" method="post">
             <img class="img-login mb-4" src="resources/images/logo_home_dark.svg" alt="">
             <h1 class="h4 mb-3 fw-normal text-login">É novo? Cadastre-se!</h1>
