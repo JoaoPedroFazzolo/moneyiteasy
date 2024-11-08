@@ -17,7 +17,7 @@ public class OracleReceitaDao implements ReceitaDao {
     private Connection conexao;
 
     @Override
-    public void cadastraReceita(Receita receita) throws DBException {
+    public void cadastraReceita(Receita receita, int idUser) throws DBException {
 
         PreparedStatement stmt = null;
         conexao = ConnectionManager.getInstance().getConnection();
@@ -30,7 +30,7 @@ public class OracleReceitaDao implements ReceitaDao {
             stmt = conexao.prepareStatement(sql);
             stmt.setDouble(1, receita.getValor());
             stmt.setDate(2, Date.valueOf(receita.getDate()));
-            stmt.setInt(3, 3);
+            stmt.setInt(3, idUser);
             System.out.println(receita.getCategoria().getCodigo());
             stmt.setInt(4, receita.getCategoria().getCodigo());
             stmt.executeUpdate();
@@ -101,16 +101,17 @@ public class OracleReceitaDao implements ReceitaDao {
     }
 
     @Override
-    public Receita buscar(int codigo) throws DBException {
+    public Receita buscar(int codigo, int idUser) throws DBException {
         Receita receita = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conexao = ConnectionManager.getInstance().getConnection();
             String sql = "SELECT * FROM TB_RECEITA INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA)" +
-                    "WHERE ID_RECEITA = ?";
+                    "WHERE ID_RECEITA = ? AND ID_USUARIO = ?";
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, codigo);
+            stmt.setInt(2, idUser);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -139,7 +140,7 @@ public class OracleReceitaDao implements ReceitaDao {
     }
 
     @Override
-    public List<Receita> listaReceita() throws DBException {
+    public List<Receita> listaReceita(int idUser) throws DBException {
         List<Receita> listaReceita = new ArrayList<Receita>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -148,9 +149,10 @@ public class OracleReceitaDao implements ReceitaDao {
             conexao = ConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM TB_RECEITA " +
-                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA)";
+                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA) WHERE ID_USUARIO = ?";
 
             stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, idUser);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("ID_RECEITA");

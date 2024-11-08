@@ -23,11 +23,15 @@
         <a href="#" class="navbar-brand d-flex align-items-center">
             <img src="resources/images/logo_home_light.svg" alt="Logo" style="height: 30px;">
         </a>
-        <span class="text-white">Boa tarde, <strong>
-            <%String nomeUsuario = (String) session.getAttribute("nomeUsuario");%>
-
-             <p>Bem-vindo, <%= nomeUsuario %>!</p>
-        </strong></span>
+        <%
+            String nomeUsuario = (String) session.getAttribute("primeiroNome");
+//            if (nomeUsuario == null) {
+//                nomeUsuario = "Visitante";
+//            }
+        %>
+        <span class="text-white">Bem-vindo, <strong><%= nomeUsuario %></strong></span>
+        </strong>
+        </span>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +44,10 @@
                     <a class="nav-link active" href="index">Visão Geral</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="receita?acao=listarReceita">Receitas</a>
+                    <a class="nav-link active" href="receita?acao=listarReceita">Receitas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="despesa?acao=listarDespesa">Despesas</a>
+                    <a class="nav-link active" href="despesa?acao=listarDespesa">Despesas</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center">

@@ -30,8 +30,9 @@ public class IndexServlet extends HttpServlet {
 
     private void totaisTransacoes(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-            double totalDespesa = dao.totalDespesa();
-            double totalReceita = dao.totalReceita();
+            int idUser = (Integer) req.getSession().getAttribute("usuarioId");
+            double totalDespesa = dao.totalDespesa(idUser);
+            double totalReceita = dao.totalReceita(idUser);
             double saldoTotal = totalReceita - totalDespesa;
             req.setAttribute("totalDespesa", totalDespesa);
             req.setAttribute("totalReceita", totalReceita);

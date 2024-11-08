@@ -11,14 +11,14 @@ public class ReceitaDaoTeste {
     public static void main(String[] args) throws DBException {
         ReceitaDao dao = DaoFactory.getReceitaDao();
 
-        Receita receitaB  = dao.buscar(22);
+        Receita receitaB  = dao.buscar(22,3);
         System.out.println(receitaB.getValor());
-//
-//        List<Receita> receitas = dao.listaReceita();
-//        for (Receita receita : receitas) {
-//            System.out.println(receita.getIdTransacao() + " " + receita.getDate() + " " + receita.getValor());
-//            System.out.println(receita.getTipoTransacao() + " "+ receita.getCategoria().getNome() + " " + receita.getCategoria().getCodigo());
-//        }
+
+        List<Receita> receitas = dao.listaReceita(3);
+        for (Receita receita : receitas) {
+            System.out.println(receita.getIdTransacao() + " " + receita.getDate() + " " + receita.getValor());
+            System.out.println(receita.getTipoTransacao() + " "+ receita.getCategoria().getNome() + " " + receita.getCategoria().getCodigo());
+        }
 
 
     }

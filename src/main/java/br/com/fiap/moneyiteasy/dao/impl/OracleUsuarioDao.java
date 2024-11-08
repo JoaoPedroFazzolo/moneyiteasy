@@ -97,7 +97,7 @@ public class OracleUsuarioDao implements UsuarioDao {
     }
 
     @Override
-    public Usuario buscarNomeUsuario(String email) throws DBException {
+    public Usuario buscarUsuario(String email) throws DBException {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Usuario usuario = null;

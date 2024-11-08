@@ -9,7 +9,7 @@ public class UsuarioDaoTeste {
     public static void main(String[] args) throws DBException {
         UsuarioDao usuarioDao = DaoFactory.getUsuarioDao();
 
-        Usuario usuario = usuarioDao.buscarNomeUsuario("teste@email.com");
+        Usuario usuario = usuarioDao.buscarUsuario("teste@email.com");
 
 
         System.out.println(usuario.getNome());

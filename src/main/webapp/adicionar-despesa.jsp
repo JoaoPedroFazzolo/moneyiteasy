@@ -32,7 +32,7 @@
                             <option value="${c.codigo}">${c.nome}</option>
                             </c:forEach>
                     </div>
-                    <input type="submit" value="Salvar" class="btn btn-warning mt-3">
+                    <input type="submit" value="Salvar" class="btn btn-success mt-3">
                     <a href="index.jsp" class="btn btn-secondary mt-3">Voltar a tela inicial</a>
                 </form>
             </div>
