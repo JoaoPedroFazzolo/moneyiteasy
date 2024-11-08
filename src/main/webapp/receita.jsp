@@ -34,7 +34,6 @@
                 <p class="fs-5 fw-bold">Registro de Receitas</p>
                 <div class="justify-content-between align-items-center">
                     <div class="table-container mt-4">
-                        <input type="text" class="form-control mb-3" id="searchInput" placeholder="Buscar por">
                         <div class="table-responsive">
                             <table class="table table-striped text-center">
                                 <thead>
