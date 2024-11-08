@@ -37,8 +37,7 @@ public class EmailBo {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(EMAIL_FROM));
-            message.setRecipients(
-                    Message.RecipientType.TO, InternetAddress.parse(destinatario));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
             message.setSubject(assunto);
             message.setText(mensagem);
             Transport.send(message);

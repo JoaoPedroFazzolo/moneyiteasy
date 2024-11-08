@@ -4,4 +4,5 @@ import br.com.fiap.moneyiteasy.model.Login;
 
 public interface LoginDao {
     boolean validarLogin(Login login);
+    void cadastrarLogin(Login login);
 }

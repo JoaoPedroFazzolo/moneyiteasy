@@ -10,6 +10,12 @@ import java.sql.SQLException;
 public class OracleLoginDao implements LoginDao {
 
     private Connection conexao;
+
+    @Override
+    public void cadastrarLogin(Login login) {
+        //subir pra tabela login o email e senha(criptografada Criptografia util)
+    }
+
     @Override
     public boolean validarLogin(Login login) {
         PreparedStatement stmt = null;

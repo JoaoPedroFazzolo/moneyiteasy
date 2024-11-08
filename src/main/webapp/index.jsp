@@ -46,59 +46,9 @@
                 <a class="btn btn-outline-danger w-100 fs-6 fw-bold" style="background-color: #eba1a7;" href="despesa?acao=formCadastroDespesa"> Adicionar Despesa</a>
             </div>
         </div>
+    </div>
 
     <!-- Filtro de Transações -->
-    <div class="row g-3 my-2">
-        <div class="col-md-12">
-            <div class="custom-card">
-                <ul class="nav nav-tabs transaction-filter">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Todos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Receita</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Despesa</a>
-                    </li>
-                </ul>
-                <div class="mt-3">
-                    <input class="form-control" type="search" placeholder="Buscar por" aria-label="Buscar">
-                </div>
-                <div class="transaction-item d-flex justify-content-between align-items-center mt-3">
-                    <div>
-                        <p class="transaction-title">Nubank</p>
-                        <p class="transaction-date">Data da despesa 18/04/2024</p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="transaction-type despesa">Despesa</span>
-                        <p class="transaction-amount ms-3">R$ 10,00</p>
-                    </div>
-                </div>
-                <div class="transaction-item d-flex justify-content-between align-items-center mt-3">
-                    <div>
-                        <p class="transaction-title">C6 Bank</p>
-                        <p class="transaction-date">Data da despesa 18/04/2024</p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="transaction-type receita">Receita</span>
-                        <p class="transaction-amount ms-3">R$ 500,00</p>
-                    </div>
-                </div>
-                <div class="transaction-item d-flex justify-content-between align-items-center mt-3">
-                    <div>
-                        <p class="transaction-title">Nubank</p>
-                        <p class="transaction-date">Data da despesa 18/04/2024</p>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="transaction-type receita">Receita</span>
-                        <p class="transaction-amount ms-3">R$ 500,00</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <%@include file="footer.jsp"%>
 
