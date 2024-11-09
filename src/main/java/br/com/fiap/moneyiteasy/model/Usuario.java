@@ -12,7 +12,6 @@ public class Usuario {
     private Login login;
 
     public Usuario() {
-        super();
     }
 
     public Usuario(int idUsuario, String nome, String cpf, LocalDate dateCriacaoUser, Login login) {
@@ -22,6 +21,7 @@ public class Usuario {
         this.dateCriacaoUser = dateCriacaoUser;
         this.login = login;
     }
+
 
     public String getNome() {
         return nome;

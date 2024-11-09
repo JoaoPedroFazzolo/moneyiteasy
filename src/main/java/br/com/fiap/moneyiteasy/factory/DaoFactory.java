@@ -20,6 +20,5 @@ public class DaoFactory {
 
     public static CalculosDao getCalculosDao() {return new OracleCalculosDao();}
 
-    public  static EmailBo getEmailBo() {return new EmailBo();
-    }
+    public static EmailBo getEmailBo() {return new EmailBo();}
 }

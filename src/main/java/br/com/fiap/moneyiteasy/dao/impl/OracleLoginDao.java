@@ -1,6 +1,7 @@
 package br.com.fiap.moneyiteasy.dao.impl;
 import br.com.fiap.moneyiteasy.dao.ConnectionManager;
 import br.com.fiap.moneyiteasy.dao.interfaces.LoginDao;
+import br.com.fiap.moneyiteasy.exception.DBException;
 import br.com.fiap.moneyiteasy.model.Login;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,11 +11,6 @@ import java.sql.SQLException;
 public class OracleLoginDao implements LoginDao {
 
     private Connection conexao;
-
-    @Override
-    public void cadastrarLogin(Login login) {
-        //subir pra tabela login o email e senha(criptografada Criptografia util)
-    }
 
     @Override
     public boolean validarLogin(Login login) {
@@ -43,5 +39,34 @@ public class OracleLoginDao implements LoginDao {
             }
         }
         return false;
+    }
+
+    @Override
+    public void cadastrarLogin(Login login) throws DBException {
+
+        PreparedStatement stmt = null;
+        conexao = ConnectionManager.getInstance().getConnection();
+
+        String sql = "INSERT INTO TB_LOGIN" +
+                "(DS_EMAIL, DS_SENHA) VALUES (?,?)";
+
+        try {
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, login.getEmail());
+            stmt.setString(2, login.getSenha());
+            stmt.executeUpdate();
+            System.out.println("Login cadastrado com sucesso!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DBException("Erro ao cadastrar o login.");
+        } finally {
+            try {
+                stmt.close();
+                conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

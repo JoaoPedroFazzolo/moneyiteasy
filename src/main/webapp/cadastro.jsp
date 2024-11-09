@@ -24,25 +24,24 @@
             <img class="img-login mb-4" src="resources/images/logo_home_dark.svg" alt="">
             <h1 class="h4 mb-3 fw-normal text-login">É novo? Cadastre-se!</h1>
             <p class="h6 mb-3 fw-normal text-login">Todos os campos são obrigatórios</p>
-        </form>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Nome completo</label>
+            <input type="text" class="form-control" name="nomeUsuario" id="nomeUsuario" placeholder="name@example.com">
+            <label for="nomeUsuario">Nome completo</label>
         </div>
 
         <div class="form-floating mt-2">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">CPF</label>
+            <input type="text" class="form-control" name="cpfUsuario" id="cpfUsuario" placeholder="name@example.com">
+            <label for="cpfUsuario">CPF</label>
         </div>
 
         <div class="form-floating mt-2">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">E-mail</label>
+            <input type="email" class="form-control" name="emailusuario" id="emailusuario" placeholder="name@example.com">
+            <label for="emailusuario">E-mail</label>
         </div>
 
         <div class="form-floating mt-2">
-            <input type="password" class="form-control" id="floatingInput" placeholder="Username">
-            <label for="floatingInput">Senha</label>
+            <input type="password" class="form-control" name="senhaUsuario" id="senhaUsuario" placeholder="Username">
+            <label for="senhaUsuario">Senha</label>
         </div>
 
         <div class="form-check text-star my-4">
@@ -51,10 +50,11 @@
         </div>
 
         <div class="d-grid gap-2">
-            <a class="btn btn-success fw-bold" href="login.jsp" role="button">Criar conta</a>
+            <input type="submit" class="btn btn-success fw-bold" value="Criar conta">
             <a class="btn btn-outline-secondary fw-bold" href="login.jsp" role="button">Voltar</a>
 
         </div>
+        </form>
     </main>
 </div>
 

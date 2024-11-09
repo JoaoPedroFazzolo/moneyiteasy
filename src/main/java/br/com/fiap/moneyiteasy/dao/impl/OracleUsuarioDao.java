@@ -17,7 +17,9 @@ public class OracleUsuarioDao implements UsuarioDao {
     @Override
     public void cadastrar(Usuario usuario) throws DBException {
         PreparedStatement stmt = null;
+
         conexao = ConnectionManager.getInstance().getConnection();
+
 
         String sql = "INSERT INTO TB_USUARIO (ID_USUARIO, NOME_USUARIO, NR_CPF, CRIACAO_USER, DS_EMAIL)" +
                 "VALUES (SQ_TB_DESPESA.NEXTVAL, ?, ?, ?, ?)";
