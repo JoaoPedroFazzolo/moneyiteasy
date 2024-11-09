@@ -6,7 +6,7 @@
 <div class="container">
     <div class="mt-5 ms-5 me-5">
         <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header fs-5 fw-bold">
                 EDIÇÃO DE DESPESAS
             </div>
 
@@ -37,8 +37,10 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <input type="submit" value="Salvar" class="btn btn-success mt-3">
-                    <a href="despesa?acao=listarDespesa" class="btn btn-secondary mt-3">Cancelar</a>
+                    <div class="d-flex gap-2">
+                        <input type="submit" value="Salvar" class="btn btn-success mt-3 fw-bold">
+                        <a href="despesa?acao=listarDespesa" class="btn btn-secondary mt-3 fw-bold">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>

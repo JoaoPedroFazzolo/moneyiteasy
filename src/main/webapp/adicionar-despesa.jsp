@@ -5,7 +5,7 @@
 <div class="container">
     <div class="mt-5 ms-5 me-5">
         <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header fs-5 fw-bold">
                 ADICIONAR DESPESA
             </div>
             <c:if test="${not empty mensagem}">
@@ -15,30 +15,33 @@
                 <div class="alert alert-danger ms-2 me-2 m-auto mt-2">${erro}</div>
             </c:if>
             <div class="card-body">
-                <form action="despesa?acao=cadastrarDespesas" method="post">
+                <form action="despesa?acao=cadastrarDespesas" method="post" class="fs-6 fw-bold">
                     <div class="form-group">
                         <label for="valorDespesa">Valor</label>
-                        <input type="text" name="valorDespesa" id="valorDespesa" class="form-control">
+                        <input type="text" name="valorDespesa" id="valorDespesa" class="form-control border-secondary border-1">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label for="dataDespesa">Data</label>
-                        <input type="date" name="dataDespesa" id="dataDespesa" class="form-control">
+                        <input type="date" name="dataDespesa" id="dataDespesa" class="form-control border-secondary border-1">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label for="categoriaDespesa">Categoria</label>
-                        <select name="categoriaDespesa" id="categoriaDespesa" class="form-control">
+                        <select name="categoriaDespesa" id="categoriaDespesa" class="form-control border-secondary border-1">
                             <option value="0">Selecione</option>
                             <c:forEach items="${listaCategorias}" var="c">
                             <option value="${c.codigo}">${c.nome}</option>
                             </c:forEach>
                     </div>
-                    <input type="submit" value="Salvar" class="btn btn-success mt-3">
-                    <a href="index.jsp" class="btn btn-secondary mt-3">Voltar a tela inicial</a>
+                    <div class="d-flex gap-2">
+                        <input type="submit" value="Salvar" class="btn btn-success mt-3 fw-bold">
+                        <a href="index" class="btn btn-secondary mt-3 fw-bold">Voltar</a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
 <%@include file="footer.jsp" %>
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@include file="header.jsp" %>
@@ -11,25 +11,35 @@
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Saldo Geral</p>
-                    <p class="fs-5 fw-bold text-center"><fmt:formatNumber value="${saldoTotal}" type="currency" currencySymbol="R$" maxFractionDigits="2" minFractionDigits="2" /></p>
+                    <p class="fs-5 fw-bold text-center">
+                        <fmt:formatNumber value="${saldoTotal}"
+                                          type="currency"
+                                          currencySymbol="R$" maxFractionDigits="2"
+                                          minFractionDigits="2"/>
+                    </p>
                 </div>
                 <img src="resources/images/eye_on.svg" width="36" height="36" alt="Olho aberto">
             </div>
         </div>
 
         <div class="col-md-6">
-            <div
-                    class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
+            <div class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Receitas</p>
-                    <p class="fs-5 fw-bold text-center"><fmt:formatNumber value="${totalReceita}" type="currency" currencySymbol="R$" maxFractionDigits="2" minFractionDigits="2" /></p>
+                    <p class="fs-5 fw-bold text-center">
+                        <fmt:formatNumber value="${totalReceita}"
+                                          type="currency"
+                                          currencySymbol="R$"
+                                          maxFractionDigits="2"
+                                          minFractionDigits="2"/>
+                    </p>
                 </div>
                 <img src="resources/images/up_line.svg" width="36" height="36" alt="Linha verde crescente">
             </div>
         </div>
 
         <!-- Tabela -->
-        <div class="bg-white rounded col-md-12">
+        <div class="bg-white col-md-12">
             <div class="p-2">
                 <p class="fs-5 fw-bold">Registro de Receitas</p>
                 <div class="justify-content-between align-items-center">
@@ -46,7 +56,11 @@
                                 <tbody id="transactionTable">
                                 <c:forEach items="${receitas}" var="receita">
                                     <tr>
-                                        <td>${receita.valor}</td>
+                                        <td><fmt:formatNumber
+                                                value="${receita.valor}" type="currency" currencySymbol="R$"
+                                                groupingUsed="true"
+                                                minFractionDigits="2" maxFractionDigits="2"/>
+                                        </td>
                                         <td>
                                             <fmt:parseDate
                                                     value="${receita.date}"
@@ -62,13 +76,13 @@
                                                 <c:param name="acao" value="formEditarReceita"/>
                                                 <c:param name="codigo" value="${receita.idTransacao}"/>
                                             </c:url>
-                                            <a href="${link}" class="btn btn-primary">Editar</a>
+                                            <a href="${link}" class="btn btn-sm btn-outline-success fs-6 fw-bold border-2 rounded-1">Editar</a>
 
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-sm btn-outline-danger fs-6 fw-bold border-2 rounded-1"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#excluirModal"
                                                     onclick="codigoExcluir.value = ${receita.idTransacao}">Excluir
                                             </button>
-
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -81,6 +95,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -106,11 +121,11 @@
     </div>
 </div>
 
-    <%@include file="footer.jsp" %>
+<%@include file="footer.jsp" %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

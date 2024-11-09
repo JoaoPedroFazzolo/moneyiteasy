@@ -29,7 +29,7 @@ public class Login {
     public void setSenha(String senha) {
         try {
             this.senha = CriptografiaUtils.criptografar(senha);
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

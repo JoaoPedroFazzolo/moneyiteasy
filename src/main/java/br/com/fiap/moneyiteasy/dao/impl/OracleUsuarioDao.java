@@ -50,11 +50,16 @@ public class OracleUsuarioDao implements UsuarioDao {
         PreparedStatement stmt = null;
         try{
             conexao = ConnectionManager.getInstance().getConnection();
-            String sql = "UPDATE TB_USUARIO SET NOME_USUARIO = ?, NR_CPF = ? WHERE ID_USUARIO = ?";
-            stmt = conexao.prepareStatement(sql);
+            String sqlUsuario = "UPDATE TB_USUARIO SET NOME_USUARIO = ? WHERE ID_USUARIO = ?";
+            stmt = conexao.prepareStatement(sqlUsuario);
             stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getCpf());
             stmt.executeUpdate();
+
+            String sqlLogin = "UPDATE TB_LOGIN SET DS_SENHA = ? WHERE DS_EMAIL = ?";
+            stmt = conexao.prepareStatement(sqlLogin);
+            stmt.setString(1, usuario.getLogin().getSenha());
+            stmt.executeUpdate();
+
             System.out.println("Usuario atualizado com sucesso!");
         } catch (SQLException e) {
            e.printStackTrace();
@@ -62,7 +67,7 @@ public class OracleUsuarioDao implements UsuarioDao {
         } finally {
             try{
                 stmt.close();
-                stmt.close();
+                conexao.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -5,7 +5,7 @@
 <div class="container">
     <div class="mt-5 ms-5 me-5">
         <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header fs-5 fw-bold">
                 EDIÇÃO DE RECEITAS
             </div>
 
@@ -17,7 +17,7 @@
             </c:if>
 
             <div class="card-body">
-                <form action="receita?acao=editarReceitas" method="post">
+                <form action="receita?acao=editarReceitas" method="post" class="fs-6 fw-bold">
                     <input type="hidden" value="${receitaEditar.idTransacao}" name="codigo">
                     <div class="form-group">
                         <label for="valorReceita">Valor</label>
@@ -36,8 +36,10 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <input type="submit" value="Salvar" class="btn btn-success mt-3">
-                    <a href="receita?acao=listarReceita" class="btn btn-secondary mt-3">Cancelar</a>
+                    <div class="d-flex gap-2">
+                        <input type="submit" value="Salvar" class="btn btn-success mt-3 fw-bold">
+                        <a href="receita?acao=listarReceita" class="btn btn-secondary mt-3 fw-bold">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>

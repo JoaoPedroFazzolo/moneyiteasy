@@ -21,7 +21,7 @@
 <header class="bg bg-header">
     <nav class="navbar navbar-expand-md navbar-dark m-3 p-2 header-container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-            <img src="resources/images/logo_home_light.svg" alt="Logo" style="height: 30px;">
+            <img src="resources/images/logo_home_light.svg" alt="Logo" style="height: 40px;">
         </a>
         <%
             String nomeUsuario = (String) session.getAttribute("primeiroNome");
@@ -29,7 +29,7 @@
 //                nomeUsuario = "Visitante";
 //            }
         %>
-        <span class="text-white">Bem-vindo, <strong><%= nomeUsuario %></strong></span>
+        <span class="text-white ms-3 fs-5">Bem-vindo, <strong><%= nomeUsuario %></strong></span>
         </strong>
         </span>
 
@@ -38,7 +38,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarContent">
+        <div class="collapse navbar-collapse fs-6 id="navbarContent">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="index">Visão Geral</a>
@@ -54,10 +54,39 @@
                 <a href="#" class="text-white me-3">
                     <i class="bi bi-bell" style="font-size: 1.5rem"></i>
                 </a>
-                <div class="dropdown">
-                    <a href="login.jsp" class="text-white">
-                        <i class="bi bi-person-circle" style="font-size: 1.5rem"></i>
+                <div class="flex-shrink-0 dropdown">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle bi bi-person-circle text-white"
+                       data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.5rem">
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-small shadow" style="position: absolute;">
+                        <li><a class="dropdown-item" href="editar-usuario.jsp">Editar usuário</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#excluirModal">Excluir usuário</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="login.jsp">Sair</a></li>
+                    </ul>
+                </div>
+            </div>
+        <div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Exclusão</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Você confirma a exclusão deste usuário?</h4>
+                        <p><strong>Atenção!</strong> Esta ação é irreversível.</p>
+                    </div>
+                    <div class="modal-footer">
+
+                        <form action="cadastro?acao=excluir" method="post">
+                            <input type="hidden" name="acao" value="excluir">
+                            <input type="hidden" name="codigoExcluir" id="codigoExcluir">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                            <button type="submit" class="btn btn-danger">Sim</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
