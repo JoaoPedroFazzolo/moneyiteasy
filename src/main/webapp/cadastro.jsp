@@ -20,6 +20,12 @@
 <div class="d-flex align-items-center justify-content-center flex-grow-1 py-4 bg-body-tertiary">
     <main class="w-100 m-auto form-container">
 
+        <c:if test="${not empty erroCadastro}">
+            <div class="alert alert-danger text-center" role="alert">
+                    ${erroCadastro}
+            </div>
+        </c:if>
+
         <form action="cadastro?acao=cadastroUsuario" method="post">
             <img class="img-login mb-4" src="resources/images/logo_home_dark.svg" alt="">
             <h1 class="h4 mb-3 fw-normal text-login">É novo? Cadastre-se!</h1>
@@ -49,7 +55,7 @@
 <%--            <label for="flexCheckDefault">Eu concordo com os Termos de Uso e a Política de Privacidade.</label>--%>
 <%--        </div>--%>
 
-        <div class="d-grid gap-2">
+        <div class="d-grid gap-2 mt-3">
             <input type="submit" class="btn btn-success fw-bold" value="Criar conta">
             <a class="btn btn-outline-secondary fw-bold" href="login.jsp" role="button">Voltar</a>
 

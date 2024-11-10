@@ -8,14 +8,6 @@
             <div class="card-header fs-5 fw-bold">
                 EDIÇÃO DE RECEITAS
             </div>
-
-            <c:if test="${not empty msgReceita }">
-                <div class="alert alert-success">${msgReceita}</div>
-            </c:if>
-            <c:if test="${not empty erro }">
-                <div class="alert alert-danger">${erroReceita}</div>
-            </c:if>
-
             <div class="card-body">
                 <form action="receita?acao=editarReceitas" method="post" class="fs-6 fw-bold">
                     <input type="hidden" value="${receitaEditar.idTransacao}" name="codigo">

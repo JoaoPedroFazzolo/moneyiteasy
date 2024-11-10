@@ -60,10 +60,9 @@ public class ReceitaServlet extends HttpServlet {
         System.out.println(idReceita);
         try{
             daoReceita.removerReceita(idReceita);
-            req.setAttribute("msgReceita", "Receita removida com sucesso");
         } catch (DBException e) {
             e.printStackTrace();
-            req.setAttribute("erroReceita", "Erro ao excluir receita");
+            req.setAttribute("excluirErroReceita", "Erro ao excluir receita");
         }
         resp.sendRedirect("receita?acao=listarReceita");
     }
@@ -116,23 +115,21 @@ public class ReceitaServlet extends HttpServlet {
     }
 
     private void cadastrarReceita(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double valor = Double.parseDouble(req.getParameter("valorReceita"));
-        LocalDate date = LocalDate.parse(req.getParameter("dataReceita"));
-        int idCategoria = Integer.parseInt(req.getParameter("categoriaReceita"));
-        Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
-        Categoria categoria = new Categoria();
-        categoria.setCodigo(idCategoria);
-
-        Receita receita = new Receita(0, valor, date, categoria);
         try {
+            double valor = Double.parseDouble(req.getParameter("valorReceita"));
+            LocalDate date = LocalDate.parse(req.getParameter("dataReceita"));
+            int idCategoria = Integer.parseInt(req.getParameter("categoriaReceita"));
+            Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
+            Categoria categoria = new Categoria();
+            categoria.setCodigo(idCategoria);
+
+            Receita receita = new Receita(0, valor, date, categoria);
             daoReceita.cadastraReceita(receita, usuario.getIdUsuario());
             req.setAttribute("receita", "Receita cadastrada com sucesso");
         } catch (DBException db) {
-            db.printStackTrace();
-            req.setAttribute("receita", "Erro ao cadastrarTbUsuario receita");
+            req.getRequestDispatcher("erro-adicionar-receita.jsp").forward(req, resp);
         } catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("receita", "Por favor, valide os dados");
+            req.getRequestDispatcher("erro-adicionar-receita.jsp").forward(req, resp);
         }
         resp.sendRedirect("receita?acao=listarReceita");
     }
@@ -151,7 +148,7 @@ public class ReceitaServlet extends HttpServlet {
             req.setAttribute("receita", "Receita atualizada com sucesso");
             resp.sendRedirect("receita?acao=listarReceita");
         } catch (DBException e) {
-            throw new RuntimeException(e);
+            req.getRequestDispatcher("erro-editar-receita.jsp").forward(req, resp);
         }
     }
 

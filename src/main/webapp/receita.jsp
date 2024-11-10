@@ -6,6 +6,13 @@
 <!-- Saldo Geral -->
 <div class="container-fluid">
     <div class="row g-2 m-0">
+
+        <c:if test="${not empty excluirErroReceita}">
+            <div class="alert alert-danger text-center" role="alert">
+                    ${excluirErroReceita}
+            </div>
+        </c:if>
+
         <div class="col-md-6">
             <div
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">

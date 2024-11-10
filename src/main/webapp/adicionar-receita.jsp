@@ -4,16 +4,15 @@
 
 <div class="container">
     <div class="mt-5 ms-5 me-5">
+
+        <c:if test="${not empty erroCadastrarReceita}">
+            <div class="alert alert-danger">${erroCadastrarReceita}</div>
+        </c:if>
+
         <div class="card mb-3">
             <div class="card-header fs-5 fw-bold">
                 ADICIONAR RECEITA
             </div>
-            <c:if test="${not empty mensagem}">
-                <div class="alert alert-success ms-2 me-2 m-auto mt-2">${mensagem}</div>
-            </c:if>
-            <c:if test="${not empty erro}">
-                <div class="alert alert-danger ms-2 me-2 m-auto mt-2">${erro}</div>
-            </c:if>
             <div class="card-body">
                 <form action="receita?acao=cadastrarReceitas" method="post" class="fs-6 fw-bold">
                     <div class="form-group">
@@ -34,7 +33,7 @@
                     </div>
                     <div class="d-flex gap-2">
                         <input type="submit" value="Salvar" class="btn btn-success mt-3 fw-bold">
-                        <a href="index" class="btn btn-secondary mt-3 fw-bold">Voltar</a>
+                        <a href="receita" class="btn btn-secondary mt-3 fw-bold">Voltar</a>
                     </div>
                 </form>
             </div>

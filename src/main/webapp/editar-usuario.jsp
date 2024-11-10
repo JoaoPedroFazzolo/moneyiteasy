@@ -1,24 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-
-
 <%@include file="header.jsp" %>
+
 <div class="container">
     <div class="mt-5 ms-5 me-5">
         <div class="card mb-3">
             <div class="card-header">
                 EDIÇÃO DO USUÁRIO
             </div>
-
-            <c:if test="${not empty msgUsuario }">
-                <div class="alert alert-success">${msgUsuario}</div>
-            </c:if>
-            <c:if test="${not empty erroUsuario }">
-                <div class="alert alert-danger">${erroUsuario}</div>
-            </c:if>
-
             <div class="card-body">
-                <form action="cadastro?acao=editarUsuario" method="post">
+                <form action="cadastro?acao=editarUsuario" method="post" class="fs-6 fw-bold">
                     <input type="hidden" value="${usuarioObjeto.idUsuario}" name="codigo">
                     <div class="form-group">
                         <label for="nomeUsuario">Nome completo</label>

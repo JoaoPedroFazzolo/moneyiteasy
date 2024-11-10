@@ -115,22 +115,21 @@ public class DespesaServlet extends HttpServlet {
 
 
     private void cadastrarDespesa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double valor = Double.parseDouble(req.getParameter("valorDespesa"));
-        LocalDate date = LocalDate.parse(req.getParameter("dataDespesa"));
-        int idCategoria = Integer.parseInt(req.getParameter("categoriaDespesa"));
-        Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
-        Categoria categoria = new Categoria();
-        categoria.setCodigo(idCategoria);
-        Despesa despesa = new Despesa(0, valor, date, categoria);
         try {
+            double valor = Double.parseDouble(req.getParameter("valorDespesa"));
+            LocalDate date = LocalDate.parse(req.getParameter("dataDespesa"));
+            int idCategoria = Integer.parseInt(req.getParameter("categoriaDespesa"));
+            Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
+            Categoria categoria = new Categoria();
+            categoria.setCodigo(idCategoria);
+
+            Despesa despesa = new Despesa(0, valor, date, categoria);
             daoDespesa.cadastraDespesa(despesa, usuario.getIdUsuario());
             req.setAttribute("despesa", "Despesa cadastrada com sucesso");
         } catch (DBException db) {
-            db.printStackTrace();
-            req.setAttribute("despesa", "Erro ao cadastrarTbUsuario despesa");
+            req.getRequestDispatcher("erro-adicionar-despesa.jsp").forward(req, resp);
         } catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("despesa", "Por favor, valide os dados");
+            req.getRequestDispatcher("erro-adicionar-despesa.jsp").forward(req, resp);
         }
         resp.sendRedirect("despesa?acao=listarDespesa");
     }
@@ -149,7 +148,7 @@ public class DespesaServlet extends HttpServlet {
             req.setAttribute("receita", "Despesa atualizada com sucesso");
             resp.sendRedirect("despesa?acao=listarDespesa");
         } catch (DBException e) {
-            throw new RuntimeException(e);
+            req.getRequestDispatcher("erro-editar-despesa.jsp").forward(req, resp);
         }
     }
 

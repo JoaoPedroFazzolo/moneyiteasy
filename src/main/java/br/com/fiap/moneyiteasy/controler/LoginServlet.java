@@ -61,9 +61,8 @@ public class LoginServlet extends HttpServlet {
 //            } catch (EmailException e) {
 //                e.printStackTrace();
 //            }
-
-        }else {
-            req.setAttribute("erroUsuario", "Usuário e/ou senha inválidos");
+        } else {
+            req.setAttribute("erroLogin", "Usuário e/ou senha inválidos");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }

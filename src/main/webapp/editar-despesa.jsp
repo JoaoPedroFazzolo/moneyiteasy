@@ -1,24 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-
-
 <%@include file="header.jsp" %>
+
 <div class="container">
     <div class="mt-5 ms-5 me-5">
         <div class="card mb-3">
             <div class="card-header fs-5 fw-bold">
                 EDIÇÃO DE DESPESAS
             </div>
-
-            <c:if test="${not empty msgDespesa}">
-                <div class="alert alert-success">${msgDespesa}</div>
-            </c:if>
-            <c:if test="${not empty erroDespesa}">
-                <div class="alert alert-danger">${erroDespesa}</div>
-            </c:if>
-
             <div class="card-body">
-                <form action="despesa?acao=editarDespesas" method="post">
+                <form action="despesa?acao=editarDespesas" method="post" class="fs-6 fw-bold">
                     <input type="hidden" value="${despesaEditar.idTransacao}" name="codigo">
                     <div class="form-group">
                         <label for="valorDespesa">Valor</label>
