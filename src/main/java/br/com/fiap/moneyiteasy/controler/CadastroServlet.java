@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 
+
 @WebServlet("/cadastro")
 public class CadastroServlet extends HttpServlet {
     private UsuarioDao usuarioDao;
@@ -32,12 +33,6 @@ public class CadastroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
 
-        // Valida se a ação é nula
-        if (acao == null || acao.isEmpty()) {
-            resp.sendRedirect("erro.jsp");
-            return;
-        }
-
         switch (acao) {
             case "cadastrar":
                 cadastrar(req, resp);
@@ -48,9 +43,6 @@ public class CadastroServlet extends HttpServlet {
             case "excluir":
                 excluir(req, resp);
                 break;
-            default:
-                resp.sendRedirect("erro.jsp");
-                break;
         }
     }
 
@@ -59,76 +51,57 @@ public class CadastroServlet extends HttpServlet {
         String cpfUsuario = req.getParameter("cpfUsuario");
         String emailUsuario = req.getParameter("emailusuario");
         String senhaUsuario = req.getParameter("senhaUsuario");
-
-        // Validar se os campos obrigatórios foram preenchidos
-        if (nomeUsuario == null || cpfUsuario == null || emailUsuario == null || senhaUsuario == null) {
-            req.setAttribute("usuario", "Por favor, preencha todos os campos obrigatórios.");
-            req.getRequestDispatcher("cadastro").forward(req, resp);
-            return;
-        }
-
         LocalDate localDate = LocalDate.now();
         Login loginUsuario = new Login(emailUsuario, senhaUsuario);
         Usuario usuario = new Usuario(0, nomeUsuario, cpfUsuario, localDate, loginUsuario);
         try {
-            // Cadastrar login e usuário em uma única transação
-            usuarioDao.cadastrar(usuario);
             loginDao.cadastrarLogin(loginUsuario);
-
+            usuarioDao.cadastrar(usuario);
             req.setAttribute("usuario", "Usuario cadastrado com sucesso");
-            resp.sendRedirect("index");
         } catch (DBException db) {
             db.printStackTrace();
-            req.setAttribute("usuario", "Erro ao cadastrar usuario: " + db.getMessage());
-            req.getRequestDispatcher("cadastro").forward(req, resp);
+            req.setAttribute("usuario", "Erro ao cadastrar usuario");
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("usuario", "Por favor, valide os dados");
         }
     }
 
+//    Teste
     private void atualizar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            int idUsuario = Integer.parseInt(req.getParameter("idUsuario"));
             String nomeUsuario = req.getParameter("nomeUsuario");
             String senhaUsuario = req.getParameter("senhaUsuario");
 
-            if (nomeUsuario == null || senhaUsuario == null) {
-                req.setAttribute("usuario", "Por favor, preencha todos os campos.");
-                req.getRequestDispatcher("atualizar.jsp").forward(req, resp);
-                return;
-            }
-
-            Usuario usuario = usuarioDao.buscarUsuarioPorId(idUsuario);
-            if (usuario != null) {
-                usuario.setNome(nomeUsuario);
-                usuario.getLogin().setSenha(senhaUsuario);
-                usuarioDao.atualizar(usuario);
-
-                req.setAttribute("usuario", "Usuario atualizado com sucesso");
-                resp.sendRedirect("index.jsp");
-            } else {
-                req.setAttribute("usuario", "Usuario não encontrado.");
-                req.getRequestDispatcher("atualizar.jsp").forward(req, resp);
-            }
+//            Usuario usuario = new Usuario(nomeUsuario);
+//            Login login = new Login(senhaUsuario);
+//            usuario.setLogin(login);
+//            usuarioDao.atualizar(usuario);
+            req.setAttribute("usuario", "Usuario atualizado com sucesso");
+            resp.sendRedirect("index");
         } catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("usuario", "Erro ao atualizar usuario");
-            req.getRequestDispatcher("atualizar.jsp").forward(req, resp);
+            throw new RuntimeException(e);
         }
     }
 
     private void excluir(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            int idUsuario = Integer.parseInt(req.getParameter("codigoExcluir"));
+        int idUsuario = Integer.parseInt(req.getParameter("codigoExcluir"));
+        System.out.println(idUsuario);
+        try{
             usuarioDao.remover(idUsuario);
             req.setAttribute("msg", "Usuario removido com sucesso");
-            resp.sendRedirect("login.jsp");
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            req.setAttribute("msg", "ID de usuário inválido");
-            req.getRequestDispatcher("erro.jsp").forward(req, resp);
         } catch (DBException e) {
             e.printStackTrace();
             req.setAttribute("msg", "Erro ao excluir usuario");
-            req.getRequestDispatcher("erro.jsp").forward(req, resp);
         }
+        resp.sendRedirect("login");
     }
+
+
+
+
+    //doPost
+    //dao cadastrologin
+    //dao casdastrousuario
+
 }

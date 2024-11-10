@@ -8,5 +8,4 @@ public interface UsuarioDao {
     void atualizar(Usuario usuario) throws DBException;
     void remover(int codigo) throws DBException;
     Usuario buscarUsuario(String email) throws DBException;
-    Usuario buscarUsuarioPorId(int idUsuario) throws DBException;
 }
