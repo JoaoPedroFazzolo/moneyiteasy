@@ -37,7 +37,7 @@
 <%--                <input type="checkbox" class="form-check-input" value="lembre-se" name="lembrar" id="lembrar">--%>
 <%--                <label for="lembrar">Manter-se conectado</label>--%>
 <%--            </div>--%>
-            <div class="d-grid gap-2 w-100">
+            <div class="d-grid gap-2 w-100 mt-3">
                 <input type="submit" class="btn btn-success fw-bold" value="Entrar"></input>
                 <a class="btn btn-outline-secondary fw-bold" href="cadastro.jsp" role="button">Cadastre-se</a>
             </div>

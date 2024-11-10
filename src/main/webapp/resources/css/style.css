@@ -29,11 +29,6 @@ body {
     font-size: 10px;
 }
 
-/* Dashboard Financeiro */
-.body-dashboard {
-    color: #1F2937;
-}
-
 .bg-header {
     background-color: #24C456;
 }
@@ -41,4 +36,9 @@ body {
 /*Footer */
 footer {
     margin-top: auto;
+}
+
+/* Dashboard Financeiro */
+.body-dashboard {
+    color: #1F2937;
 }

@@ -43,73 +43,96 @@
             </div>
         </div>
 
-        <!-- Adicionar Receita e Despesa-->
-        <div class="row g-2 py-1">
-            <div class="col-md-6 d-flex justify-content-around">
-                <a class="btn btn-outline-success w-100 fs-6 fw-bold" style="background-color: #B5EFC9;" href="receita?acao=formCadastroReceita">Adicionar Receita</a>
+        <!-- Carrossel Bootstrap -->
+        <div id="carouselExample" class="carousel slide bg-white shadow-sm rounded h-100" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <p class="fs-5 fw-bold text-success mt-2">Receitas</p>
+                        <table class="table text-center align-middle border border-success">
+                            <thead class="table-success">
+                            <tr>
+                                <th>Valor Recebido</th>
+                                <th>Data</th>
+                                <th>Categoria</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${receitas}" var="receita">
+                                <tr>
+                                    <td><fmt:formatNumber
+                                            value="${receita.valor}" type="currency" currencySymbol="R$"
+                                            groupingUsed="true"
+                                            minFractionDigits="2" maxFractionDigits="2"/>
+                                    </td>
+                                    <td>
+                                        <fmt:parseDate
+                                                value="${receita.date}"
+                                                pattern="yyyy-MM-dd"
+                                                var="dateFmt"/>
+                                        <fmt:formatDate
+                                                value="${dateFmt}"
+                                                pattern="dd/MM/yyyy"/>
+                                    </td>
+                                    <td>${receita.categoria.nome}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Slide Despesas -->
+                <div class="carousel-item">
+                    <div class="container">
+                        <p class="fs-5 fw-bold text-danger mt-2">Despesas</p>
+                        <table class="table text-center align-middle border border-danger">
+                            <thead class="table-danger">
+                            <tr>
+                                <th>Valor Gasto</th>
+                                <th>Data</th>
+                                <th>Categoria</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${despesas}" var="despesa">
+                                <tr>
+                                    <td><fmt:formatNumber
+                                            value="${despesa.valor}" type="currency" currencySymbol="R$"
+                                            groupingUsed="true"
+                                            minFractionDigits="2" maxFractionDigits="2"/>
+                                    </td>
+                                    <td>
+                                        <fmt:parseDate
+                                                value="${despesa.date}"
+                                                pattern="yyyy-MM-dd"
+                                                var="dateFmt"/>
+                                        <fmt:formatDate
+                                                value="${dateFmt}"
+                                                pattern="dd/MM/yyyy"/>
+                                    </td>
+                                    <td>${despesa.categoria.nome}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 d-flex justify-content-around">
-                <a class="btn btn-outline-danger w-100 fs-6 fw-bold" style="background-color: #eba1a7;" href="despesa?acao=formCadastroDespesa">Adicionar Despesa</a>
-            </div>
+
+            <!-- Controles do Carrossel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
         </div>
-    </div>
 
 
-    <div id="carouselExampleFade" class="carousel slide carousel-fade">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <table class="table table-striped text-center">
-                    <thead>
-                    <tr>
-                        <th>Valor Recebido</th>
-                        <th>Data</th>
-                        <th>Categoria</th>
-                    </tr>
-                    </thead>
-                    <tbody id="transactionTable">
-                    <c:forEach items="${receitas}" var="receita">
-                        <tr>
-                            <td><fmt:formatNumber
-                                    value="${receita.valor}" type="currency" currencySymbol="R$"
-                                    groupingUsed="true"
-                                    minFractionDigits="2" maxFractionDigits="2"/>
-                            </td>
-                            <td>
-                                <fmt:parseDate
-                                        value="${receita.date}"
-                                        pattern="yyyy-MM-dd"
-                                        var="dateFmt"/>
-                                <fmt:formatDate
-                                        value="${dateFmt}"
-                                        pattern="dd/MM/yyyy"/>
-                            </td>
-                            <td>${receita.categoria.nome}</td>
-                            <td>
-                                <c:url value="receita" var="link">
-                                    <c:param name="acao" value="formEditarReceita"/>
-                                    <c:param name="codigo" value="${receita.idTransacao}"/>
-                                </c:url>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+
     </div>
 
 </div> <!-- Fechando o container-fluid antes de incluir o footer -->
