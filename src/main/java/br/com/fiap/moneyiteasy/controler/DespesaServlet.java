@@ -7,6 +7,7 @@ import br.com.fiap.moneyiteasy.exception.DBException;
 import br.com.fiap.moneyiteasy.factory.DaoFactory;
 import br.com.fiap.moneyiteasy.model.Categoria;
 import br.com.fiap.moneyiteasy.model.Despesa;
+import br.com.fiap.moneyiteasy.model.Usuario;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -52,14 +53,14 @@ public class DespesaServlet extends HttpServlet {
     }
 
     private void excluirDespesa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idDespesa = Integer.parseInt(req.getParameter("codigoExcluir"));
+        int idDespesa = Integer.parseInt(req.getParameter("codigoDespesaExcluir"));
         System.out.println(idDespesa);
         try{
             daoDespesa.removerDespesa(idDespesa);
-            req.setAttribute("msg", "Despesa removida com sucesso");
+            req.setAttribute("msgDespesa", "Despesa removida com sucesso");
         } catch (DBException e) {
             e.printStackTrace();
-            req.setAttribute("msg", "Erro ao excluir receita");
+            req.setAttribute("erroDespesa", "Erro ao excluir receita");
         }
         resp.sendRedirect("despesa?acao=listarDespesa");
     }
@@ -106,8 +107,8 @@ public class DespesaServlet extends HttpServlet {
         List<Categoria> listaCategorias = categoriaDao.listar(tipoCategoria);
         req.setAttribute("listaCategorias", listaCategorias);
         int idReceita = Integer.parseInt(req.getParameter("codigo"));
-        int idUser = (Integer) req.getSession().getAttribute("usuarioId");
-        Despesa despesa = daoDespesa.buscar(idReceita, idUser);
+        Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
+        Despesa despesa = daoDespesa.buscar(idReceita, usuario.getIdUsuario());
         req.setAttribute("despesaEditar", despesa);
         req.getRequestDispatcher("editar-despesa.jsp").forward(req, resp);
     }
@@ -117,16 +118,16 @@ public class DespesaServlet extends HttpServlet {
         double valor = Double.parseDouble(req.getParameter("valorDespesa"));
         LocalDate date = LocalDate.parse(req.getParameter("dataDespesa"));
         int idCategoria = Integer.parseInt(req.getParameter("categoriaDespesa"));
-        int idUser = (Integer) req.getSession().getAttribute("usuarioId");
+        Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
         Categoria categoria = new Categoria();
         categoria.setCodigo(idCategoria);
         Despesa despesa = new Despesa(0, valor, date, categoria);
         try {
-            daoDespesa.cadastraDespesa(despesa, idUser);
+            daoDespesa.cadastraDespesa(despesa, usuario.getIdUsuario());
             req.setAttribute("despesa", "Despesa cadastrada com sucesso");
         } catch (DBException db) {
             db.printStackTrace();
-            req.setAttribute("despesa", "Erro ao cadastrar despesa");
+            req.setAttribute("despesa", "Erro ao cadastrarTbUsuario despesa");
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("despesa", "Por favor, valide os dados");
@@ -153,16 +154,16 @@ public class DespesaServlet extends HttpServlet {
     }
 
     private void listarDespesa(HttpServletRequest req) throws ServletException, IOException, DBException {
-        int idUser = (Integer) req.getSession().getAttribute("usuarioId");
-        List<Despesa> despesas = daoDespesa.listaDespesa(idUser);
+        Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
+        List<Despesa> despesas = daoDespesa.listaDespesa(usuario.getIdUsuario());
         req.setAttribute("despesas", despesas);
     }
 
     private void totaisTransacoes(HttpServletRequest req) throws ServletException, IOException {
         try{
-            int idUser = (Integer) req.getSession().getAttribute("usuarioId");
-            double totalDespesa = totaisDao.totalDespesa(idUser);
-            double totalReceita = totaisDao.totalReceita(idUser);
+            Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioObjeto");
+            double totalDespesa = totaisDao.totalDespesa(usuario.getIdUsuario());
+            double totalReceita = totaisDao.totalReceita(usuario.getIdUsuario());
             double saldoTotal = totalReceita - totalDespesa;
             req.setAttribute("totalDespesa", totalDespesa);
             req.setAttribute("saldoTotal", saldoTotal);

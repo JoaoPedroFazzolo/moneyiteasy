@@ -53,6 +53,65 @@
             </div>
         </div>
     </div>
+
+
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <table class="table table-striped text-center">
+                    <thead>
+                    <tr>
+                        <th>Valor Recebido</th>
+                        <th>Data</th>
+                        <th>Categoria</th>
+                    </tr>
+                    </thead>
+                    <tbody id="transactionTable">
+                    <c:forEach items="${receitas}" var="receita">
+                        <tr>
+                            <td><fmt:formatNumber
+                                    value="${receita.valor}" type="currency" currencySymbol="R$"
+                                    groupingUsed="true"
+                                    minFractionDigits="2" maxFractionDigits="2"/>
+                            </td>
+                            <td>
+                                <fmt:parseDate
+                                        value="${receita.date}"
+                                        pattern="yyyy-MM-dd"
+                                        var="dateFmt"/>
+                                <fmt:formatDate
+                                        value="${dateFmt}"
+                                        pattern="dd/MM/yyyy"/>
+                            </td>
+                            <td>${receita.categoria.nome}</td>
+                            <td>
+                                <c:url value="receita" var="link">
+                                    <c:param name="acao" value="formEditarReceita"/>
+                                    <c:param name="codigo" value="${receita.idTransacao}"/>
+                                </c:url>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
 </div> <!-- Fechando o container-fluid antes de incluir o footer -->
 
 <%@include file="footer.jsp"%>

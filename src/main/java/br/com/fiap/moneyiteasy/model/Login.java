@@ -11,7 +11,11 @@ public class Login {
 
     public Login(String email, String senha) {
         this.email = email;
-        this.senha = senha;
+        try {
+            this.senha = CriptografiaUtils.criptografar(senha);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public String getEmail() {

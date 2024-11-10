@@ -118,3 +118,4 @@ ALTER TABLE tb_conta
     ADD CONSTRAINT fk_id_usuario_conta
         FOREIGN KEY (id_usuario)
             REFERENCES tb_usuario (id_usuario);
+

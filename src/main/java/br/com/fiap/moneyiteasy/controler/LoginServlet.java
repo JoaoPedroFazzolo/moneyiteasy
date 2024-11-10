@@ -52,9 +52,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", email);
             String mensagem = "Um login foi realizado na plataforma em " + LocalDate.now();
             String primeiroNome = usuario.getNome().trim().split(" ")[0];
-            int usuarioId = usuario.getIdUsuario();
             session.setAttribute("primeiroNome", primeiroNome);
-            session.setAttribute("usuarioId", usuarioId);
+            session.setAttribute("loginObjeto", login);
+            session.setAttribute("usuarioObjeto", usuario);
             resp.sendRedirect("index");
 //            try {
 //                bo.enviarEmail(email, "Login Realizado", mensagem);
@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 //            }
 
         }else {
-            req.setAttribute("erro", "Usuário e/ou senha inválidos");
+            req.setAttribute("erroUsuario", "Usuário e/ou senha inválidos");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }

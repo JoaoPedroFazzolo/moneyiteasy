@@ -20,7 +20,7 @@
 <div class="d-flex align-items-center justify-content-center flex-grow-1 py-4 bg-body-tertiary">
     <main class="w-100 m-auto form-container">
 
-        <form action="cadastro?acao=cadastrar" method="post">
+        <form action="cadastro?acao=cadastroUsuario" method="post">
             <img class="img-login mb-4" src="resources/images/logo_home_dark.svg" alt="">
             <h1 class="h4 mb-3 fw-normal text-login">É novo? Cadastre-se!</h1>
             <p class="h6 mb-3 fw-normal text-login">Todos os campos são obrigatórios</p>
@@ -44,10 +44,10 @@
             <label for="senhaUsuario">Senha</label>
         </div>
 
-        <div class="form-check text-star my-4">
-            <input type="checkbox" class="form-check-input" value="lembre-se" id="flexCheckDefault">
-            <label for="flexCheckDefault">Eu concordo com os Termos de Uso e a Política de Privacidade.</label>
-        </div>
+<%--        <div class="form-check text-star my-4">--%>
+<%--            <input type="checkbox" class="form-check-input" value="lembre-se" id="flexCheckDefault">--%>
+<%--            <label for="flexCheckDefault">Eu concordo com os Termos de Uso e a Política de Privacidade.</label>--%>
+<%--        </div>--%>
 
         <div class="d-grid gap-2">
             <input type="submit" class="btn btn-success fw-bold" value="Criar conta">

@@ -4,8 +4,8 @@ import br.com.fiap.moneyiteasy.exception.DBException;
 import br.com.fiap.moneyiteasy.model.Usuario;
 
 public interface UsuarioDao {
-    void cadastrar(Usuario usuario) throws DBException;
+    void cadastrarTbUsuario(Usuario usuario) throws DBException;
     void atualizar(Usuario usuario) throws DBException;
-    void remover(int codigo) throws DBException;
+    void removerUsuario(Usuario usuario) throws DBException;
     Usuario buscarUsuario(String email) throws DBException;
 }

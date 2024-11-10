@@ -22,7 +22,7 @@
 <body class="d-flex flex-column min-vh-100">
 <div class="d-flex align-items-center justify-content-center flex-grow-1 py-4 bg-body-tertiary">
     <main class="w-100 m-auto form-container">
-        <form action="login" method="post">
+        <form action="login?acao" method="post">
             <img src="resources/images/logo_home_dark.svg" class="img-login mb-4" alt="Logo money-it-easy">
             <h1 class="h4 mb-3 fw-normal text-login">Por favor, faça o login</h1>
             <div class="form-floating">
@@ -33,10 +33,10 @@
                 <input type="password" class="form-control" name="senha" id="senha" placeholder="password">
                 <label for="senha">Senha</label>
             </div>
-            <div class="form-check text-star my-4">
-                <input type="checkbox" class="form-check-input" value="lembre-se" name="lembrar" id="lembrar">
-                <label for="lembrar">Manter-se conectado</label>
-            </div>
+<%--            <div class="form-check text-star my-4">--%>
+<%--                <input type="checkbox" class="form-check-input" value="lembre-se" name="lembrar" id="lembrar">--%>
+<%--                <label for="lembrar">Manter-se conectado</label>--%>
+<%--            </div>--%>
             <div class="d-grid gap-2 w-100">
                 <input type="submit" class="btn btn-success fw-bold" value="Entrar"></input>
                 <a class="btn btn-outline-secondary fw-bold" href="cadastro.jsp" role="button">Cadastre-se</a>

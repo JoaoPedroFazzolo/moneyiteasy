@@ -10,23 +10,27 @@
                 EDIÇÃO DO USUÁRIO
             </div>
 
-            <c:if test="${not empty msg }">
-                <div class="alert alert-success">${msg}</div>
+            <c:if test="${not empty msgUsuario }">
+                <div class="alert alert-success">${msgUsuario}</div>
             </c:if>
-            <c:if test="${not empty erro }">
-                <div class="alert alert-danger">${erro}</div>
+            <c:if test="${not empty erroUsuario }">
+                <div class="alert alert-danger">${erroUsuario}</div>
             </c:if>
 
             <div class="card-body">
                 <form action="cadastro?acao=editarUsuario" method="post">
-                    <input type="hidden" value="${usuarioEditar.idUsuario}" name="codigo">
+                    <input type="hidden" value="${usuarioObjeto.idUsuario}" name="codigo">
                     <div class="form-group">
                         <label for="nomeUsuario">Nome completo</label>
-                        <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" value="${usuarioEditar.nome}">
+                        <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" value="${usuarioObjeto.nome}">
+                    </div>
+                    <div class="form-group">
+                        <label for="cpfUsuario">CPF</label>
+                        <input type="text" name="cpfUsuario" id="cpfUsuario" class="form-control" value="${usuarioObjeto.cpf}">
                     </div>
                     <div class="form-group">
                         <label for="senhaUsuario">Senha</label>
-                        <input type="text" name="senhaUsuario" id="senhaUsuario" class="form-control" value="${usuarioEditar.senha}">
+                        <input type="text" name="senhaUsuario" id="senhaUsuario" class="form-control" placeholder="Digite a senha nova">
                     </div>
                     <input type="submit" value="Salvar" class="btn btn-success mt-3">
                     <a href="index" class="btn btn-secondary mt-3">Cancelar</a>

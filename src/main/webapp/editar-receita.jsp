@@ -9,11 +9,11 @@
                 EDIÇÃO DE RECEITAS
             </div>
 
-            <c:if test="${not empty msg }">
-                <div class="alert alert-success">${msg}</div>
+            <c:if test="${not empty msgReceita }">
+                <div class="alert alert-success">${msgReceita}</div>
             </c:if>
             <c:if test="${not empty erro }">
-                <div class="alert alert-danger">${erro}</div>
+                <div class="alert alert-danger">${erroReceita}</div>
             </c:if>
 
             <div class="card-body">

@@ -34,7 +34,7 @@ public class OracleDespesaDao implements DespesaDao {
             System.out.println("Despesa cadastrada com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DBException("Erro ao cadastrar despesa");
+            throw new DBException("Erro ao cadastrarTbUsuario despesa");
         } finally {
             try {
                 stmt.close();
@@ -64,7 +64,7 @@ public class OracleDespesaDao implements DespesaDao {
         } finally {
             try{
                 stmt.close();
-                stmt.close();
+                conexao.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -84,7 +84,7 @@ public class OracleDespesaDao implements DespesaDao {
             System.out.println("Despesa removida com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DBException("Erro ao remover despesa");
+            throw new DBException("Erro ao removerUsuario despesa");
         }finally {
             try {
                 stmt.close();
@@ -144,7 +144,9 @@ public class OracleDespesaDao implements DespesaDao {
             conexao = ConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM TB_DESPESA " +
-                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_DESPESA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA) WHERE ID_USUARIO = ?";
+                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_DESPESA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA) " +
+                    "WHERE ID_USUARIO = ? " +
+                    "ORDER BY DT_DESPESA DESC";
 
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, idUser);

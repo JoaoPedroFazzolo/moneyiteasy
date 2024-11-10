@@ -38,7 +38,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse fs-6 id="navbarContent">
+        <div class="collapse navbar-collapse fs-6" id="navbarContent">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="index">Visão Geral</a>
@@ -59,14 +59,17 @@
                        data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.5rem">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-small shadow" style="position: absolute;">
-                        <li><a class="dropdown-item" href="editar-usuario.jsp">Editar usuário</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#excluirModal">Excluir usuário</a></li>
+                        <li><a class="dropdown-item" href="cadastro?acao=editarUsuario">Editar usuário</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#excluirUsuarioModal">Excluir usuário</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="login.jsp">Sair</a></li>
                     </ul>
                 </div>
             </div>
-        <div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        </div>
+
+
+        <div class="modal fade" id="excluirUsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -79,9 +82,9 @@
                     </div>
                     <div class="modal-footer">
 
-                        <form action="cadastro?acao=excluir" method="post">
-                            <input type="hidden" name="acao" value="excluir">
-                            <input type="hidden" name="codigoExcluir" id="codigoExcluir">
+                        <form action="cadastro?acao=excluirUsuario" method="post">
+                            <input type="hidden" name="acao" value="excluirUsuario">
+                            <input type="hidden" name="codigoUsuarioExcluir" id="codigoUsuarioExcluir">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                             <button type="submit" class="btn btn-danger">Sim</button>
                         </form>

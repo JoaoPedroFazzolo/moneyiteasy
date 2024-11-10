@@ -37,7 +37,7 @@ public class OracleReceitaDao implements ReceitaDao {
             System.out.println("Receita cadastrada com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DBException("Erro ao cadastrar receita");
+            throw new DBException("Erro ao cadastrar TbUsuario receita");
         } finally {
             try {
                 stmt.close();
@@ -68,7 +68,7 @@ public class OracleReceitaDao implements ReceitaDao {
         } finally {
             try{
                 stmt.close();
-                stmt.close();
+                conexao.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -89,7 +89,7 @@ public class OracleReceitaDao implements ReceitaDao {
             System.out.println("Receita removida com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DBException("Erro ao remover receita");
+            throw new DBException("Erro ao removerUsuario receita");
         }finally {
             try {
                 stmt.close();
@@ -149,7 +149,9 @@ public class OracleReceitaDao implements ReceitaDao {
             conexao = ConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM TB_RECEITA " +
-                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA) WHERE ID_USUARIO = ?";
+                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA) " +
+                    "WHERE ID_USUARIO = ? " +
+                    "ORDER BY DT_RECEITA DESC";
 
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, idUser);

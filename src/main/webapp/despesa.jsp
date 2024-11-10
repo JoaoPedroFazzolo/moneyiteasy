@@ -41,6 +41,15 @@
             </div>
         </div>
 
+        <div class="row g-2 py-1">
+            <div class="col-md-6 d-flex justify-content-around">
+                <a class="btn btn-outline-success w-100 fs-6 fw-bold" style="background-color: #B5EFC9;" href="receita?acao=formCadastroReceita">Adicionar Receita</a>
+            </div>
+            <div class="col-md-6 d-flex justify-content-around">
+                <a class="btn btn-outline-danger w-100 fs-6 fw-bold" style="background-color: #eba1a7;" href="despesa?acao=formCadastroDespesa">Adicionar Despesa</a>
+            </div>
+        </div>
+
         <!-- Tabela -->
         <div class="bg-white rounded col-md-12">
             <div class="p-2">
@@ -83,7 +92,7 @@
                                             <button type="button" class="btn btn-sm btn-outline-danger fs-6 fw-bold border-2 rounded-1"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#excluirModal"
-                                                    onclick="codigoExcluir.value = ${despesa.idTransacao}">Excluir
+                                                    onclick="codigoDespesaExcluir.value = ${despesa.idTransacao}">Excluir
                                             </button>
                                         </td>
                                     </tr>
@@ -113,7 +122,7 @@
 
                 <form action="despesa?acao=excluirDespesas" method="post">
                     <input type="hidden" name="acao" value="excluir">
-                    <input type="hidden" name="codigoExcluir" id="codigoExcluir">
+                    <input type="hidden" name="codigoDespesaExcluir" id="codigoDespesaExcluir">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                     <button type="submit" class="btn btn-danger">Sim</button>
                 </form>

@@ -22,6 +22,12 @@ public class Usuario {
         this.login = login;
     }
 
+    public Usuario(int idUsuario, String nome, String cpf) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
 
     public String getNome() {
         return nome;
