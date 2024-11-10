@@ -22,7 +22,7 @@ public class OracleUsuarioDao implements UsuarioDao {
 
 
         String sql = "INSERT INTO TB_USUARIO (ID_USUARIO, NOME_USUARIO, NR_CPF, CRIACAO_USER, DS_EMAIL)" +
-                "VALUES (SQ_TB_DESPESA.NEXTVAL, ?, ?, ?, ?)";
+                "VALUES (SQ_TB_USUARIO.NEXTVAL, ?, ?, ?, ?)";
 
         try {
             stmt = conexao.prepareStatement(sql);

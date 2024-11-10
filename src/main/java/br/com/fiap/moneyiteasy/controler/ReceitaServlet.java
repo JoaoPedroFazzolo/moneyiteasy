@@ -94,9 +94,7 @@ public class ReceitaServlet extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-
         }
-
 
     }
 

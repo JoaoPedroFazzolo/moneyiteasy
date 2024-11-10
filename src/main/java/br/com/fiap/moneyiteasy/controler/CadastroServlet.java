@@ -19,8 +19,10 @@ import java.time.LocalDate;
 
 @WebServlet("/cadastro")
 public class CadastroServlet extends HttpServlet {
+
     private UsuarioDao usuarioDao;
     private LoginDao loginDao;
+
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -31,22 +33,7 @@ public class CadastroServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String acao = req.getParameter("acao");
 
-        switch (acao) {
-            case "cadastrar":
-                cadastrar(req, resp);
-                break;
-            case "atualizar":
-                atualizar(req, resp);
-                break;
-            case "excluir":
-                excluir(req, resp);
-                break;
-        }
-    }
-
-    private void cadastrar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String nomeUsuario = req.getParameter("nomeUsuario");
         String cpfUsuario = req.getParameter("cpfUsuario");
         String emailUsuario = req.getParameter("emailusuario");
@@ -57,51 +44,11 @@ public class CadastroServlet extends HttpServlet {
         try {
             loginDao.cadastrarLogin(loginUsuario);
             usuarioDao.cadastrar(usuario);
-            req.setAttribute("usuario", "Usuario cadastrado com sucesso");
-        } catch (DBException db) {
-            db.printStackTrace();
-            req.setAttribute("usuario", "Erro ao cadastrar usuario");
-        } catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("usuario", "Por favor, valide os dados");
-        }
-    }
-
-//    Teste
-    private void atualizar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            String nomeUsuario = req.getParameter("nomeUsuario");
-            String senhaUsuario = req.getParameter("senhaUsuario");
-
-//            Usuario usuario = new Usuario(nomeUsuario);
-//            Login login = new Login(senhaUsuario);
-//            usuario.setLogin(login);
-//            usuarioDao.atualizar(usuario);
-            req.setAttribute("usuario", "Usuario atualizado com sucesso");
-            resp.sendRedirect("index");
-        } catch (Exception e) {
+        } catch (DBException e) {
             throw new RuntimeException(e);
         }
+        resp.sendRedirect("login.jsp");
     }
-
-    private void excluir(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idUsuario = Integer.parseInt(req.getParameter("codigoExcluir"));
-        System.out.println(idUsuario);
-        try{
-            usuarioDao.remover(idUsuario);
-            req.setAttribute("msg", "Usuario removido com sucesso");
-        } catch (DBException e) {
-            e.printStackTrace();
-            req.setAttribute("msg", "Erro ao excluir usuario");
-        }
-        resp.sendRedirect("login");
-    }
-
-
-
-
-    //doPost
-    //dao cadastrologin
-    //dao casdastrousuario
-
 }
+
+
