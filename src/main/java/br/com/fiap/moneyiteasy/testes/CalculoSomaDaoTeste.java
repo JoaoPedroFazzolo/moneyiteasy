@@ -9,8 +9,7 @@ public class CalculoSomaDaoTeste {
     public static void main(String[] args) throws DBException {
         CalculosDao dao = DaoFactory.getCalculosDao();
 
-        dao.totalDespesa();
-        dao.totalInvestimento();
-        dao.totalReceita();
+        dao.totalDespesa(3);
+        dao.totalReceita(4);
     }
 }

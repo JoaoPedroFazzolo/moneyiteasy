@@ -26,7 +26,7 @@ public class OracleCategoriaDao implements CategoriaDao {
             stmt.setString(2, categoria.getTipo().toUpperCase());
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DBException("Erro ao cadastrar categoria");
+            throw new DBException("Erro ao cadastrarTbUsuario categoria");
         }finally {
             try {
                 stmt.close();

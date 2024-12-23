@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="pt-br" data-bs-theme="light">
@@ -22,26 +22,33 @@
 <body class="d-flex flex-column min-vh-100">
 <div class="d-flex align-items-center justify-content-center flex-grow-1 py-4 bg-body-tertiary">
     <main class="w-100 m-auto form-container">
-        <form action="login" method="post">
+
+        <c:if test="${not empty erroLogin}">
+            <div class="alert alert-danger text-center" role="alert">
+                    ${erroLogin}
+            </div>
+        </c:if>
+
+        <form action="login?acao" method="post">
             <img src="resources/images/logo_home_dark.svg" class="img-login mb-4" alt="Logo money-it-easy">
             <h1 class="h4 mb-3 fw-normal text-login">Por favor, faça o login</h1>
+            <div class="form-floating">
+                <input type="email" class="form-control" name="email" id="email" placeholder="email@example.com">
+                <label for="email">E-mail</label>
+            </div>
+            <div class="form-floating mt-2">
+                <input type="password" class="form-control" name="senha" id="senha" placeholder="password">
+                <label for="senha">Senha</label>
+            </div>
+<%--            <div class="form-check text-star my-4">--%>
+<%--                <input type="checkbox" class="form-check-input" value="lembre-se" name="lembrar" id="lembrar">--%>
+<%--                <label for="lembrar">Manter-se conectado</label>--%>
+<%--            </div>--%>
+            <div class="d-grid gap-2 w-100 mt-3">
+                <input type="submit" class="btn btn-success fw-bold" value="Entrar"></input>
+                <a class="btn btn-outline-secondary fw-bold" href="cadastro.jsp" role="button">Cadastre-se</a>
+            </div>
         </form>
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">E-mail</label>
-        </div>
-        <div class="form-floating mt-2">
-            <input type="password" class="form-control" id="floatingInput" placeholder="password">
-            <label for="floatingInput">Senha</label>
-        </div>
-        <div class="form-check text-star my-4">
-            <input type="checkbox" class="form-check-input" value="lembre-se" id="flexCheckDefault">
-            <label for="flexCheckDefault">Manter-se conectado</label>
-        </div>
-        <div class="d-grid gap-2 w-100">
-            <a class="btn btn-success fw-bold" href="./index.jsp" role="button">Login</a>
-            <a class="btn btn-outline-secondary fw-bold" href="cadastro.jsp" role="button">Cadastre-se</a>
-        </div>
     </main>
 </div>
 

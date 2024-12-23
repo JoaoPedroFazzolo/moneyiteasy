@@ -1,59 +1,52 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visão Geral | Money It Easy</title>
-
-    <link rel="shortcut icon" href="resources/images/logo_money_icon.svg" type="image/x-icon">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="resources/css/style.css">
-</head>
-
-<body class="container body-dashboard">
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
 <%@include file="header.jsp"%>
 
 <!-- Saldo Geral -->
 <div class="container-fluid">
     <div class="row g-2 m-0">
-        <div class="col-md-4">
+
+        <div class="col-md-6">
             <div
                     class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
-                    <p class="fs-6 p-3 text-center">Total de Despesas</p>
-                    <p class="fs-5 fw-bold text-center">${saldoTotal}</p>
+                    <p class="fs-6 p-3 text-center">Saldo Geral</p>
+                    <p class="fs-5 fw-bold text-center">
+                        <fmt:formatNumber value="${saldoTotal}"
+                                          type="currency"
+                                          currencySymbol="R$"
+                                          maxFractionDigits="2"
+                                          minFractionDigits="2" />
+                    </p>
                 </div>
                 <img src="resources/images/eye_on.svg" width="36" height="36" alt="Olho aberto">
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div
-                    class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
+        <div class="col-md-6">
+            <div class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
                 <div>
                     <p class="fs-6 p-3 text-center">Despesas</p>
-                    <p class="fs-5 fw-bold text-center">${totalDespesa}</p>
+                    <p class="fs-5 fw-bold text-center">
+                        <fmt:formatNumber value="${totalDespesa}"
+                                          type="currency"
+                                          currencySymbol="R$"
+                                          maxFractionDigits="2"
+                                          minFractionDigits="2" />
+                    </p>
                 </div>
                 <img src="resources/images/down_line.svg" width="36" height="36" alt="Linha verde decrescente">
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div
-                    class="p-3 bg-white shadow-sm d-flex flex-column justify-content-center align-items-center rounded h-100">
-                <div>
-                    <p class="fs-6 p-3 text-center">Investimentos</p>
-                    <p class="fs-5 fw-bold text-center">${totalInvestimento}</p>
-                </div>
-                <img src="resources/images/active_line.svg" width="36" height="36" alt="Linha verde decrescente">
+        <div class="row g-2 py-1">
+            <div class="col-md-6 d-flex justify-content-around">
+                <a class="btn btn-outline-success w-100 fs-6 fw-bold" style="background-color: #B5EFC9;" href="receita?acao=formCadastroReceita">Adicionar Receita</a>
+            </div>
+            <div class="col-md-6 d-flex justify-content-around">
+                <a class="btn btn-outline-danger w-100 fs-6 fw-bold" style="background-color: #eba1a7;" href="despesa?acao=formCadastroDespesa">Adicionar Despesa</a>
             </div>
         </div>
 
@@ -63,7 +56,6 @@
                 <p class="fs-5 fw-bold">Registro de Despesas</p>
                 <div class="justify-content-between align-items-center">
                     <div class="table-container mt-4">
-                        <input type="text" class="form-control mb-3" id="searchInput" placeholder="Buscar por">
                         <div class="table-responsive">
                             <table class="table table-striped text-center">
                                 <thead>
@@ -74,19 +66,34 @@
                                 </tr>
                                 </thead>
                                 <tbody id="transactionTable">
-                                <c:forEach items="${listaDespesas}" var="listaDespesa">
+                                <c:forEach items="${despesas}" var="despesa">
                                     <tr>
-                                        <td>${listaDespesa.valor}</td>
-                                        <td>${listaDespesa.date}</td>
-                                        <td>${listaDespesa.categoria.nome}</td>
+                                        <td><fmt:formatNumber
+                                                value="${despesa.valor}" type="currency" currencySymbol="R$"
+                                                              groupingUsed="true" minFractionDigits="2" maxFractionDigits="2" />
+                                        </td>
                                         <td>
-                                            <c:url value="despesas" var="link">
-                                                <c:param name="acao" value="editar-despesa"/>
+                                            <fmt:parseDate
+                                                    value="${despesa.date}"
+                                                    pattern="yyyy-MM-dd"
+                                                    var="dateFmt"/>
+                                            <fmt:formatDate
+                                                    value="${dateFmt}"
+                                                    pattern="dd/MM/yyyy"/>
+                                        </td>
+                                        <td>${despesa.categoria.nome}</td>
+                                        <td>
+                                            <c:url value="despesa" var="link">
+                                                <c:param name="acao" value="formEditarDespesa"/>
                                                 <c:param name="codigo" value="${despesa.idTransacao}"/>
                                             </c:url>
-                                            <a href="${link}" class="btn btn-primary">Editar</a>
+                                            <a href="${link}" class="btn btn-sm btn-outline-success fs-6 fw-bold border-2 rounded-1">Editar</a>
 
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#excluirModal" onclick="codigoExcluir.value = ${despesa.idTransacao}">Excluir</button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger fs-6 fw-bold border-2 rounded-1"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#excluirModal"
+                                                    onclick="codigoDespesaExcluir.value = ${despesa.idTransacao}">Excluir
+                                            </button>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -99,7 +106,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -114,9 +120,9 @@
             </div>
             <div class="modal-footer">
 
-                <form action="despesa" method="post">
+                <form action="despesa?acao=excluirDespesas" method="post">
                     <input type="hidden" name="acao" value="excluir">
-                    <input type="hidden" name="codigoExcluir" id="codigoExcluir">
+                    <input type="hidden" name="codigoDespesaExcluir" id="codigoDespesaExcluir">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
                     <button type="submit" class="btn btn-danger">Sim</button>
                 </form>

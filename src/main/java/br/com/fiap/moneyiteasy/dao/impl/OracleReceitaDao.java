@@ -17,7 +17,7 @@ public class OracleReceitaDao implements ReceitaDao {
     private Connection conexao;
 
     @Override
-    public void cadastraReceita(Receita receita) throws DBException {
+    public void cadastraReceita(Receita receita, int idUser) throws DBException {
 
         PreparedStatement stmt = null;
         conexao = ConnectionManager.getInstance().getConnection();
@@ -30,13 +30,14 @@ public class OracleReceitaDao implements ReceitaDao {
             stmt = conexao.prepareStatement(sql);
             stmt.setDouble(1, receita.getValor());
             stmt.setDate(2, Date.valueOf(receita.getDate()));
-            stmt.setInt(3, 3);
+            stmt.setInt(3, idUser);
+            System.out.println(receita.getCategoria().getCodigo());
             stmt.setInt(4, receita.getCategoria().getCodigo());
             stmt.executeUpdate();
             System.out.println("Receita cadastrada com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DBException("Erro ao cadastrar receita");
+            throw new DBException("Erro ao cadastrar TbUsuario receita");
         } finally {
             try {
                 stmt.close();
@@ -56,8 +57,8 @@ public class OracleReceitaDao implements ReceitaDao {
             String sql = "UPDATE TB_RECEITA SET VALOR_RECEITA = ?, ID_CATEGORIA = ?, DT_RECEITA = ? WHERE ID_RECEITA = ?";
             stmt = conexao.prepareStatement(sql);
             stmt.setDouble(1, receita.getValor());
-            stmt.setDate(2, Date.valueOf(receita.getDate()));
-            stmt.setInt(3, receita.getCategoria().getCodigo());
+            stmt.setInt(2, receita.getCategoria().getCodigo());
+            stmt.setDate(3, Date.valueOf(receita.getDate()));
             stmt.setInt(4, receita.getIdTransacao());
             stmt.executeUpdate();
             System.out.println("Receita atualizada com sucesso!");
@@ -67,7 +68,7 @@ public class OracleReceitaDao implements ReceitaDao {
         } finally {
             try{
                 stmt.close();
-                stmt.close();
+                conexao.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -88,7 +89,7 @@ public class OracleReceitaDao implements ReceitaDao {
             System.out.println("Receita removida com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DBException("Erro ao remover receita");
+            throw new DBException("Erro ao removerUsuario receita");
         }finally {
             try {
                 stmt.close();
@@ -100,16 +101,17 @@ public class OracleReceitaDao implements ReceitaDao {
     }
 
     @Override
-    public Receita buscar(int codigo) throws DBException {
+    public Receita buscar(int codigo, int idUser) throws DBException {
         Receita receita = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conexao = ConnectionManager.getInstance().getConnection();
             String sql = "SELECT * FROM TB_RECEITA INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA)" +
-                    "WHERE ID_RECEITA = ?";
+                    "WHERE ID_RECEITA = ? AND ID_USUARIO = ?";
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, codigo);
+            stmt.setInt(2, idUser);
             rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -119,7 +121,7 @@ public class OracleReceitaDao implements ReceitaDao {
                 int categoriaId = rs.getInt("ID_CATEGORIA");
                 int usuarioId = rs.getInt("ID_USUARIO");
                 String nomeCategoria = rs.getString("NOME_CATEGORIA");
-                String tipoCategoria = rs.getString("TIPO_CATEGORIA");
+                String tipoCategoria = rs.getString("TIPO");
                 Categoria categoria = new Categoria(categoriaId, nomeCategoria, tipoCategoria);
                 receita = new Receita(id, valor, date, categoria);
             }
@@ -138,7 +140,7 @@ public class OracleReceitaDao implements ReceitaDao {
     }
 
     @Override
-    public List<Receita> listaReceita() throws DBException {
+    public List<Receita> listaReceita(int idUser) throws DBException {
         List<Receita> listaReceita = new ArrayList<Receita>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -147,9 +149,12 @@ public class OracleReceitaDao implements ReceitaDao {
             conexao = ConnectionManager.getInstance().getConnection();
 
             String sql = "SELECT * FROM TB_RECEITA " +
-                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA)";
+                    "INNER JOIN TB_CATEGORIA_FINTECH ON (TB_RECEITA.ID_CATEGORIA = TB_CATEGORIA_FINTECH.ID_CATEGORIA) " +
+                    "WHERE ID_USUARIO = ? " +
+                    "ORDER BY DT_RECEITA DESC";
 
             stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, idUser);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("ID_RECEITA");
