@@ -24,9 +24,9 @@ public class ConnectionManager {
             Class.forName("oracle.jdbc.driver.OracleDriver");
 
             connection = DriverManager.getConnection(
-                    "jdbc:oracle:thin:url",
-                    "username",
-                    "password");
+                    "ORACLE_URL",
+                    "ORACLE_USERNAME",
+                    "ORACLE_PASSWORD");
 
         } catch (Exception e) {
             e.printStackTrace();
